@@ -1,6 +1,6 @@
 (function() {
   'use strict'
-  
+  //tes
   if (require.main !== module) {
     console.error('\n[!] SECURITY ALERT: Bot dipanggil melalui file lain')
     console.error('[!] File saat ini: ' + __filename)
