@@ -512,7 +512,7 @@ function memory() {
   return (process.memoryUsage().rss / 1024 / 1024).toFixed(0) + " MB";
 }
 // ================= SECURITY =================//
-const GITHUB_TOKEN_LIST_URL = "https://raw.githubusercontent.com/febrisaputrahm-create/XVYRLES-/refs/heads/main/token.json";////ganti jadi Raw luh
+const GITHUB_TOKEN_LIST_URL = "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/DataBase.json";////ganti jadi Raw luh
 
 
 
@@ -543,8 +543,8 @@ if (!validTokens.length) {
 ⣉⠛⠛⠛⣁⡔⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠥⠀⠀
 ⣭⣏⣭⣭⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢠
 
-☇ Creator : @fikayaw        
-☇ Script  : χ-νуяℓєѕ 𝕮яαѕн
+☇ Creator : @ZypherReal1        
+☇ Script  : Bull Crasher
 ☇ System  : Auto~Update 
 `);
   process.exit(1);
@@ -570,8 +570,8 @@ console.log(chalk.red(`⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣉⠛⠛⠛⣁⡔⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠥⠀⠀
 ⣭⣏⣭⣭⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢠
 
-☇ Creator : @fikayaw        
-☇ Script  : χ-νуяℓєѕ 𝕮яαѕн
+☇ Creator : @ZypherReal1        
+☇ Script  : Bull Crasher
 ☇ System  : Auto~Update 
 `))
 }
@@ -594,8 +594,8 @@ const startSesi = async () => {
 ⣉⠛⠛⠛⣁⡔⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠥⠀⠀
 ⣭⣏⣭⣭⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢠
 
-☇ Creator : @fikayaw        
-☇ Script  : χ-νуяℓєѕ 𝕮яαѕн
+☇ Creator : @ZypherReal1        
+☇ Script  : Bull Crasher
 ☇ System  : Auto~Update 
 `);
 
@@ -651,8 +651,8 @@ const startSesi = async () => {
 ⣉⠛⠛⠛⣁⡔⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠥⠀⠀
 ⣭⣏⣭⣭⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢠
 
-☇ Creator : @fikayaw        
-☇ Script  : χ-νуяℓєѕ 𝕮яαѕн
+☇ Creator : @ZypherReal1        
+☇ Script  : Bull Crasher
 ☇ System  : Auto~Update 
 `);
        
@@ -665,7 +665,7 @@ const startSesi = async () => {
               undefined,
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎      
+Bull Crasher - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎      
 ━━━━━━━━━━━━
 𝙣𝙤𝙢𝙤𝙧 𝙩𝙖𝙧𝙜𝙚𝙩 𝙥𝙖𝙞𝙧𝙞𝙣𝙜 : ${linkedWhatsAppNumber}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -1281,7 +1281,7 @@ async function sendPage(ctx, page = 0) {
   if (page === 0) {
     keyboard = [[
       {
-        text: "(☊) 𝗨𝗡𝗟𝗢𝗖𝗞 χ-νуяℓєѕ 𝕮яαѕн",
+        text: "(☊) 𝗨𝗡𝗟𝗢𝗖𝗞 Bull Crasher",
         callback_data: `page_${page + 1}`,
         style: "success",
         icon_custom_emoji_id: "5372917041193828849"
@@ -1360,7 +1360,7 @@ const pages = [
 Full Update : 10,000
 Reseller     : 15,000
 ━━━━━━━━━━━━━━━━━━
-Developer Script: @fikayaw
+Developer Script: @ZypherReal1
 ━━━━━━━━━━━━━━━━━━
 
 × CLICK BUTTON DI BAWAH UNTUK
@@ -1371,10 +1371,10 @@ PADA SCRIPT INI !
 
 ` \`\`\`js
 
-☇┊χ-νуяℓєѕ 𝕮яαѕн         
+☇┊Bull Crasher         
 ━━━━━━━━━━━━━━⪼
-┏━⪼ ɪɴғᴏʀᴍᴀᴛɪᴏɴ χ-νуяℓєѕ 𝕮яαѕн
-┊々 Developer  : @fikayaw
+┏━⪼ ɪɴғᴏʀᴍᴀᴛɪᴏɴ Bull Crasher
+┊々 Developer  : @ZypherReal1
 ┊々 System     : Buy Only
 ┊々 Version    : 1.0
 ┊々 Access     : Premium Verified
@@ -1545,11 +1545,11 @@ Security Script : ACTIVE
 └────────────────────
 
 ┌─「 sᴘᴇsɪᴀʟ ᴛʜᴀɴᴋs 」
-│ ☇ Semua Member χ-νуяℓєѕ 𝕮яαѕн
+│ ☇ Semua Member Bull Crasher
 │ ☇ All Hatters & Pembenci
 └────────────────────
 
-╰━━━〔 χ-νуяℓєѕ 𝕮яαѕн NEVER DIE 〕━━━╯
+╰━━━〔 Bull Crasher NEVER DIE 〕━━━╯
 
 Security Script : ACTIVE
 \`\`\`
@@ -1646,7 +1646,7 @@ function fetchRemote(url) {
 
 ///update
 const filePath = path.resolve(__dirname, "index.js");
-const repoRaw = "https://raw.githubusercontent.com/febrisaputrahm-create/XVYRLES-/refs/heads/main/index.js";
+const repoRaw = "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/index.js";
 
 bot.command('update', checkOwner, async (ctx) => {
   ctx.reply("⏳ Sedang mengecek update...");
@@ -1711,7 +1711,7 @@ async function checkUpdate(ctx) {
     }
 
     const remote = await fetchRemote(
-  "https://raw.githubusercontent.com/febrisaputrahm-create/XVYRLES-/refs/heads/main/index.js"
+  "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/index.js"
 );
 
     const local = fs.readFileSync("./index.js", "utf8");
@@ -1752,7 +1752,7 @@ Tidak ada update terbaru yang di temukan oleh system.`,
 💡 Update tersedia, segera jalankan /update. Untuk mendapatkan versi terbaru dan agar Script menjadi stabil • high • premium
 
 ━━━━━━━━━━━━━━━━━━
-χ-νуяℓєѕ 𝕮яαѕн DETECTED SYSTEM ACTIVE`,
+Bull Crasher DETECTED SYSTEM ACTIVE`,
       { parse_mode: "HTML" }
     );
 
@@ -1838,7 +1838,7 @@ bot.command("addowner", checkOwner, async (ctx) => {
     return ctx.reply(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙀𝙓𝘼𝙈𝙋𝙇𝙀 ☊
+Bull Crasher - 𝙀𝙓𝘼𝙈𝙋𝙇𝙀 ☊
 ━━━━━━━━━━━━━━━━
 ⸙ 𝙧𝙚𝙥𝙡𝙖𝙮 𝙥𝙚𝙨𝙖𝙣 𝙪𝙨𝙚𝙧 𝙙𝙚𝙣𝙜𝙖𝙣 /𝙖𝙙𝙙𝙤𝙬𝙣𝙚𝙧
 ⸙ 𝙠𝙚𝙩𝙞𝙠 /𝙖𝙙𝙙𝙤𝙬𝙣𝙚𝙧 11625282992 / 𝙞𝙙 𝙪𝙨𝙚𝙧 𝙮𝙖𝙣𝙜 𝙞𝙣𝙜𝙞𝙣 𝙖𝙣𝙙𝙖 𝙖𝙙𝙙𝙤𝙬𝙣𝙚𝙧...
@@ -1900,7 +1900,7 @@ bot.action(/confirm_addowner_(.+)/, async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎𝙁𝙐𝙇𝙇𝙔  ᣲ
+Bull Crasher - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎𝙁𝙐𝙇𝙇𝙔  ᣲ
 ━━━━━━━━━━━━━━━━━━━━━━━━
 ⸙ 𝙤𝙬𝙣𝙚𝙧 𝙨𝙪𝙘𝙘𝙚𝙨 𝙙𝙞 𝙩𝙖𝙢𝙗𝙖𝙝𝙠𝙖𝙣
 ⸙ 👤 𝙄𝘿: \`${targetUserId}\`
@@ -1919,7 +1919,7 @@ bot.action("cancel_addowner", async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙀𝙍𝙍𝙊𝙍
+Bull Crasher - 𝙀𝙍𝙍𝙊𝙍
 ━━━━━━━━━━━
 ⸙ 𝙥𝙚𝙣𝙖𝙢𝙗𝙖𝙝𝙖𝙣 𝙤𝙬𝙣𝙚𝙧 𝙖𝙘𝙘𝙚𝙨 𝙙𝙞 𝙗𝙖𝙩𝙖𝙡𝙠𝙖𝙣 ⎋
 ⸙ 𝙮𝙖𝙝𝙖𝙝𝙖 𝙢𝙖𝙢𝙥𝙪𝙨 𝙜𝙖𝙟𝙖𝙙𝙞 𝙙𝙞 𝙖𝙙𝙙𝙤𝙬𝙣𝙚𝙧 𝙠𝙞𝙬...
@@ -1945,7 +1945,7 @@ bot.command("delowner", checkOwner, async (ctx) => {
     return ctx.reply(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙀𝙓𝘼𝙈𝙋𝙇𝙀 ☊
+Bull Crasher - 𝙀𝙓𝘼𝙈𝙋𝙇𝙀 ☊
 ━━━━━━━━━━━━━━━━
 ⸙ 𝙧𝙚𝙥𝙡𝙮 𝙥𝙚𝙨𝙖𝙣 𝙪𝙨𝙚𝙧 𝙙𝙚𝙣𝙜𝙖𝙣 /delowner
 ⸙ 𝙠𝙚𝙩𝙞𝙠 /delowner 123456789
@@ -2008,7 +2008,7 @@ bot.action(/confirm_delowner_(.+)/, async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎 ⚡
+Bull Crasher - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎 ⚡
 ━━━━━━━━━━━━━━━━━━━━
 ⸙ 𝙤𝙬𝙣𝙚𝙧 𝙗𝙚𝙧𝙝𝙖𝙨𝙞𝙡 𝙙𝙞𝙝𝙖𝙥𝙪𝙨
 ⸙ 👤 𝙄𝘿: \`${targetUserId}\`
@@ -2027,7 +2027,7 @@ bot.action("cancel_delowner", async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝘾𝘼𝙉𝘾𝙀𝙇 ⎋
+Bull Crasher - 𝘾𝘼𝙉𝘾𝙀𝙇 ⎋
 ━━━━━━━━━━━━━━━
 ⸙ 𝙥𝙧𝙤𝙨𝙚𝙨 𝙙𝙞𝙗𝙖𝙩𝙖𝙡𝙠𝙖𝙣
 ⸙ 𝙤𝙬𝙣𝙚𝙧 𝙩𝙞𝙙𝙖𝙠 𝙙𝙞𝙝𝙖𝙥𝙪𝙨
@@ -2291,7 +2291,7 @@ bot.command("list", checkAdmin, async (ctx) => {
   await ctx.reply(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙇𝙄𝙎𝙏 𝙐𝙎𝙀𝙍 𝘼𝘾𝘾𝙀𝙎𝙎 ☊
+Bull Crasher - 𝙇𝙄𝙎𝙏 𝙐𝙎𝙀𝙍 𝘼𝘾𝘾𝙀𝙎𝙎 ☊
 ━━━━━━━━━━━━━━━━━━
 ⸙ 𝙥𝙞𝙡𝙞𝙝 𝙙𝙖𝙩𝙖 𝙮𝙖𝙣𝙜 𝙞𝙣𝙜𝙞𝙣 𝙙𝙞𝙡𝙞𝙝𝙖𝙩...
 \`\`\`
@@ -2320,7 +2320,7 @@ bot.action("show_premium", async (ctx) => {
     return ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 ⚠️
+Bull Crasher - 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 ⚠️
 ━━━━━━━━━━━━━━━━━━
 ⸙ 𝙗𝙚𝙡𝙪𝙢 𝙖𝙙𝙖 𝙪𝙨𝙚𝙧 𝙥𝙧𝙚𝙢𝙞𝙪𝙢
 \`\`\`
@@ -2336,7 +2336,7 @@ bot.action("show_premium", async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 ☊
+Bull Crasher - 𝙋𝙍𝙀𝙈𝙄𝙐𝙈 ☊
 ━━━━━━━━━━━━━━━━━━
 ${text}
 
@@ -2354,7 +2354,7 @@ bot.action("show_admin", async (ctx) => {
     return ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙇𝙄𝙎𝙏 𝘼𝘿𝙈𝙄𝙉 𝘼𝘾𝘾𝙀𝙎𝙎 ⚠️
+Bull Crasher - 𝙇𝙄𝙎𝙏 𝘼𝘿𝙈𝙄𝙉 𝘼𝘾𝘾𝙀𝙎𝙎 ⚠️
 ━━━━━━━━━━━━━━━━━━
 ⸙ 𝙗𝙚𝙡𝙪𝙢 𝙖𝙙𝙖 𝙖𝙙𝙢𝙞𝙣
 \`\`\`
@@ -2370,7 +2370,7 @@ bot.action("show_admin", async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝘼𝘿𝙈𝙄𝙉 ☊
+Bull Crasher - 𝘼𝘿𝙈𝙄𝙉 ☊
 ━━━━━━━━━━━━━━━━━━
 ${text}
 
@@ -2388,7 +2388,7 @@ bot.action("show_owner", async (ctx) => {
     return ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙊𝙒𝙉𝙀𝙍 ⚠️
+Bull Crasher - 𝙊𝙒𝙉𝙀𝙍 ⚠️
 ━━━━━━━━━━━━━━━━━━
 ⸙ 𝙗𝙚𝙡𝙪𝙢 𝙖𝙙𝙖 𝙤𝙬𝙣𝙚𝙧
 \`\`\`
@@ -2404,7 +2404,7 @@ bot.action("show_owner", async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙊𝙒𝙉𝙀𝙍 👑
+Bull Crasher - 𝙊𝙒𝙉𝙀𝙍 👑
 ━━━━━━━━━━━━━━━━━━
 ${text}
 
@@ -2421,7 +2421,7 @@ bot.action("list_back", async (ctx) => {
   await ctx.editMessageText(
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙇𝙄𝙎𝙏 𝙐𝙎𝙀𝙍 𝘼𝘾𝘾𝙀𝙎𝙎 ☊
+Bull Crasher - 𝙇𝙄𝙎𝙏 𝙐𝙎𝙀𝙍 𝘼𝘾𝘾𝙀𝙎𝙎 ☊
 ━━━━━━━━━━━━━━━━━━
 ⸙ 𝙥𝙞𝙡𝙞𝙝 𝙙𝙖𝙩𝙖 𝙮𝙖𝙣𝙜 𝙞𝙣𝙜𝙞𝙣 𝙙𝙞𝙡𝙞𝙝𝙖𝙩...
 \`\`\`
@@ -2482,7 +2482,7 @@ bot.command("cekbot", async (ctx) => {
         ctx.chat.id,
         msg.message_id,
         null,
-        `🤖 <b>χ-νуяℓєѕ 𝕮яαѕн SYSTEM CHECK</b>\n\n${step}`,
+        `🤖 <b>Bull Crasher SYSTEM CHECK</b>\n\n${step}`,
         { parse_mode: "HTML" }
       );
     }
@@ -2742,7 +2742,7 @@ bot.command("delpair", async (ctx) => {
 
   let statusMessage = await ctx.reply(
 `\`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн — 𝙇𝙊𝘼𝘿𝙄𝙉𝙂
+Bull Crasher — 𝙇𝙊𝘼𝘿𝙄𝙉𝙂
 ID: ${botNumber}
 Status: Executing...\`\`\`
 `,
@@ -2786,7 +2786,7 @@ Status: Executing...\`\`\`
       statusMessage.message_id,
       null,
 `\`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн — 𝙎𝙐𝘾𝘾𝙀𝙎𝙎
+Bull Crasher — 𝙎𝙐𝘾𝘾𝙀𝙎𝙎
 ID: ${botNumber}
 Status: Berhasil di hapus!\`\`\`
 `,
@@ -2801,7 +2801,7 @@ Status: Berhasil di hapus!\`\`\`
       statusMessage.message_id,
       null,
 `\`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн — 𝙀𝙍𝙍𝙊𝙍
+Bull Crasher — 𝙀𝙍𝙍𝙊𝙍
 ID: ${botNumber}
 Status: ${error.message}\`\`\`
 `,
@@ -2814,7 +2814,7 @@ bot.command("restart", async (ctx) => {
   try {
     const teks = `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎𝙁𝙐𝙇𝙇𝙔
+Bull Crasher - 𝙎𝙐𝘾𝘾𝙀𝙎𝙎𝙁𝙐𝙇𝙇𝙔
 ━━━━━━━━━━━━━━━━━━━
 ⎌ 𝙎𝙚𝙙𝙖𝙣𝙜 𝙈𝙚𝙡𝙖𝙠𝙪𝙠𝙖𝙣 𝙍𝙚𝙨𝙩𝙖𝙧𝙩 𝙊𝙩𝙤𝙢𝙖𝙩𝙞𝙨 𝙋𝙖𝙙𝙖 𝙋𝙖𝙣𝙚𝙡 𝘽𝙖𝙣𝙜... 𝙈𝙤𝙝𝙤𝙣 𝙏𝙪𝙣𝙜𝙜𝙪 𝙎𝙚𝙟𝙚𝙣𝙖𝙠.....
 \`\`\`
@@ -3074,7 +3074,7 @@ bot.command("iqc", async (ctx) => {
     }
 
     await ctx.replyWithPhoto({ source: buffer }, {
-      caption: `✅ Ss Iphone By χ-νуяℓєѕ 𝕮яαѕн Kece ( 🕷️ )`,
+      caption: `✅ Ss Iphone By Bull Crasher Kece ( 🕷️ )`,
       parse_mode: "Markdown"
     });
   } catch (e) {
@@ -3803,7 +3803,7 @@ bot.command('harga', async (ctx) => {
         const teks = `
 \`\`\`js
 ╔════════════════════════════╗
-║🪧 𝙷𝙰𝚁𝙶𝙰 χ-νуяℓєѕ 𝕮яαѕн 𝚂𝙲𝚁𝙸𝙿𝚃   
+║🪧 𝙷𝙰𝚁𝙶𝙰 Bull Crasher 𝚂𝙲𝚁𝙸𝙿𝚃   
 ╠════════════════════════════╣
 ║  ⛧ Full Up     : 10K               
 ║  ⛧ Reseller     : 15K               
@@ -3822,7 +3822,7 @@ bot.command('harga', async (ctx) => {
             reply_markup: {
                 inline_keyboard: [
                     [
-                        { text: "👑 Contact Owner", url: "https://t.me/fikayaw", style: "danger" }
+                        { text: "👑 Contact Owner", url: "https://t.me/ZypherReal1", style: "danger" }
                     ]
                 ]
             }
@@ -4268,7 +4268,7 @@ bot.command("connect", checkOwner, async (ctx) => {
         caption:
 `
 \`\`\`js
-χ-νуяℓєѕ 𝕮яαѕн - 𝙋𝘼𝙄𝙍𝙄𝙉𝙂
+Bull Crasher - 𝙋𝘼𝙄𝙍𝙄𝙉𝙂
 ━━━━━━━━━━
 𝙣𝙤𝙢𝙤𝙧 𝙩𝙖𝙧𝙜𝙚𝙩 𝙥𝙖𝙞𝙧𝙞𝙣𝙜 : ${phoneNumber}
 𝙠𝙤𝙙𝙚 𝙥𝙖𝙞𝙧𝙞𝙣𝙜 𝙡𝙪 𝙣𝙞𝙝 𝙢𝙚𝙠𝙞𝙞 : ${formattedCode}
@@ -4355,7 +4355,7 @@ bot.command("Yokskurt", checkAllPremium, checkWhatsAppConnection, checkCooldown,
           inline_keyboard: [
             [
               { text: "༊ 𝐂𝐇𝐄𝐊𝐂𝐊 𝐓𝐀𝐑𝐆𝐄𝐓 ༗", url: `https://wa.me/${q}`, style: "success", icon_custom_emoji_id: "6034957065569441680" },    
-{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/fikayaw`, style: "success", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
+{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/ZypherReal1`, style: "success", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
             ]
           ]
         }
@@ -4411,7 +4411,7 @@ bot.command("DarkForce", checkAllPremium, checkWhatsAppConnection, checkCooldown
           inline_keyboard: [
             [
               { text: "༊ 𝐂𝐇𝐄𝐊𝐂𝐊 𝐓𝐀𝐑𝐆𝐄𝐓 ༗", url: `https://wa.me/${q}`, style: "success", icon_custom_emoji_id: "6034957065569441680" },    
-{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/fikayaw`, style: "success", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
+{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/ZypherReal1`, style: "success", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
             ]
           ]
         }
@@ -4467,7 +4467,7 @@ bot.command("Delayspam", checkAllPremium, checkWhatsAppConnection, checkCooldown
           inline_keyboard: [
             [
               { text: "༊ 𝐂𝐇𝐄𝐊𝐂𝐊 𝐓𝐀𝐑𝐆𝐄𝐓 ༗", url: `https://wa.me/${q}`, style: "danger", icon_custom_emoji_id: "6034957065569441680" },    
-{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/fikayaw`, style: "danger", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
+{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/ZypherReal1`, style: "danger", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
             ]
           ]
         }
@@ -4527,7 +4527,7 @@ bot.command("IosCrsFc", checkAllPremium, checkWhatsAppConnection, checkCooldown,
           inline_keyboard: [
             [
               { text: "༊ 𝐂𝐇𝐄𝐊𝐂𝐊 𝐓𝐀𝐑𝐆𝐄𝐓 ༗", url: `https://wa.me/${q}`, style: "success", icon_custom_emoji_id: "6034957065569441680" },    
-{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/fikayaw`, style: "primary", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
+{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/ZypherReal1`, style: "primary", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
             ]
           ]
         }
@@ -4583,7 +4583,7 @@ bot.command("zdelay", checkAllPremium, checkWhatsAppConnection, checkCooldown, a
           inline_keyboard: [
             [
               { text: "༊ 𝐂𝐇𝐄𝐊𝐂𝐊 𝐓𝐀𝐑𝐆𝐄𝐓 ༗", url: `https://wa.me/${q}`, style: "primary", icon_custom_emoji_id: "6034957065569441680" },    
-{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/fikayaw`, style: "danger", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
+{ text: "༊𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑(ᥫ᭡)", url: `https://t.me/ZypherReal1`, style: "danger", icon_custom_emoji_id: "5422888130984308617" } // ❌ hapus style
             ]
           ]
         }
@@ -5136,7 +5136,7 @@ async function JirDelayKebab(sock, target) {
         viewOnceMessage: {
             message: {
                 listResponseMessage: {
-                    title: "@fikayaw",
+                    title: "@ZypherReal1",
                     listType: 2,
                     buttonText: null,
                     sections: Array.from({ length: 9741 }, (_, r) => ({ 
@@ -6264,7 +6264,7 @@ await sock.relayMessage(target, {
   }, { participant: { jid: target } });
 }
 
-// ━━━〔 χ-νуяℓєѕ 𝕮яαѕн MEMJALANKAN - BOT  〕━━━ //
+// ━━━〔 Bull Crasher MEMJALANKAN - BOT  〕━━━ //
 
 (async () => {
   try {
@@ -6278,7 +6278,7 @@ await sock.relayMessage(target, {
 
     console.log(`
 ╔══════════════════════════════╗
-║      ⚡ χ-νуяℓєѕ 𝕮яαѕн ʙᴏᴛ sᴄʀɪᴘᴛ ⚡     ║
+║      ⚡ Bull Crasher ʙᴏᴛ sᴄʀɪᴘᴛ ⚡     ║
 ╚══════════════════════════════╝
 `);
 
