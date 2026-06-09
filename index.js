@@ -1,4 +1,4 @@
-// VERSI: 1.0.1
+// VERSI: 1.0.2
 (function() {
   'use strict'
   //tes
