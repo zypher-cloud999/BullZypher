@@ -1499,6 +1499,7 @@ Security Script : ACTIVE
 ☇━━━━━━━━━━━━━━☇
 ⚒ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ sᴇᴛᴛɪɴɢs
 ☇━━━━━━━━━━━━━━☇
+(⌑) /reqfitur ⇢ Request Fitur Ke Dev
 (⌑) /connect ⇢ Connect Sender
 (⌑) /killsesi ⇢ Delete Session
 (⌑) /restart ⇢ Restart Panel
@@ -5695,6 +5696,53 @@ ${rarity}
 🟣 Epic        15%
 🟡 Legendary    4%
 🔴 Mythic       1%`
+  );
+
+});
+
+//reqfitur 
+const OWNER_ID = 6698713215; // Ganti dengan ID kalian
+
+bot.command("reqfitur", async (ctx) => {
+
+  const text = ctx.message.text
+    .split(" ")
+    .slice(1)
+    .join(" ");
+
+  if (!text) {
+    return ctx.reply(
+`❌ Format salah
+
+Contoh:
+/reqfitur Tambahkan fitur AI Chat`
+    );
+  }
+
+  const user = ctx.from;
+
+  await bot.telegram.sendMessage(
+    OWNER_ID,
+`📩 REQUEST FITUR BARU
+
+👤 Nama:
+${user.first_name}
+
+🆔 ID:
+${user.id}
+
+📌 Username:
+@${user.username || "-"}
+
+💬 Request:
+${text}`
+  );
+
+  ctx.reply(
+`✅ Request fitur berhasil dikirim!
+
+📨 Pesan kamu telah diteruskan ke owner.
+⏳ Mohon tunggu jika fitur disetujui.`
   );
 
 });
