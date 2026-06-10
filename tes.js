@@ -387,9 +387,7 @@ let waConnected = false;
 // ==================== FUNGSI GET RANDOM IMAGE ====================
 function getRandomImage() {
     const images = [
-        "https://files.catbox.moe/t39am1.jpg",
-        "https://files.catbox.moe/12fl1r.jpg",
-        "https://files.catbox.moe/s55rn9.jpg"
+        "https://files.catbox.moe/xl1ufj.jpg"
     ];
     return images[Math.floor(Math.random() * images.length)];
 }
@@ -1239,7 +1237,7 @@ bot.command("setch", async (ctx) => {
 
 // ================= CONFIG =================
 const IMAGES = {
-  home: "https://files.catbox.moe/s55rn9.jpg"
+  home: "https://files.catbox.moe/xl1ufj.jpg"
 };
 
 // ================= EDIT MENU =================
@@ -5815,8 +5813,6 @@ bot.command("listapido", async (ctx) => {
   return ctx.reply(text);
 });
 
-const fs = require("fs");
-
 function getVPS() {
   return JSON.parse(fs.readFileSync("./database/vps.json"));
 }
@@ -6548,7 +6544,7 @@ bot.command("connect", checkOwner, async (ctx) => {
     const formattedCode = code.match(/.{1,4}/g)?.join("-") || code;
 
     const msg = await ctx.replyWithPhoto(
-  "https://files.catbox.moe/s55rn9.jpg",//ganti jadi url catbox gambar lu
+  "https://files.catbox.moe/xl1ufj.jpg",//ganti jadi url catbox gambar lu
       {
         caption:
 `
@@ -6623,8 +6619,8 @@ bot.command("DelayInvisV1", checkAllPremium, checkWhatsAppConnection, checkCoold
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithPhoto(
-      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
+    await ctx.replyWithVideo(
+      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : DELAY INVISIBLE V2
@@ -6679,8 +6675,8 @@ bot.command("DelayInvisV2", checkAllPremium, checkWhatsAppConnection, checkCoold
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithPhoto(
-      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
+    await ctx.replyWithVideo(
+      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : DELAY INVISIBLE V2
@@ -6735,8 +6731,8 @@ bot.command("SpamDelayAndro", checkAllPremium, checkWhatsAppConnection, checkCoo
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithPhoto(
-      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
+    await ctx.replyWithVideo(
+      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : INVISIBLE DELAY SPAM
@@ -6795,8 +6791,8 @@ bot.command("SpamFcIos", checkAllPremium, checkWhatsAppConnection, checkCooldown
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithPhoto(
-      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
+    await ctx.replyWithVideo(
+      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>☠️ MODE : INVISIBLE FC X IOS
@@ -6851,8 +6847,8 @@ bot.command("zdelay", checkAllPremium, checkWhatsAppConnection, checkCooldown, a
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithPhoto(
-      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
+    await ctx.replyWithVideo(
+      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : INVISIBLE DELAY X BULDOZ
@@ -6910,8 +6906,8 @@ bot.command("FcClick", checkAllPremium, checkWhatsAppConnection, checkCooldown, 
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
+    await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" },
       {
         caption: `<pre>👾 𝐅𝐑𝐄𝐄𝐙𝐄 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -6974,8 +6970,8 @@ bot.command("DelayVisible", checkAllPremium, checkWhatsAppConnection, checkCoold
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
+    await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" },
       {
         caption: `<pre>👾 𝐅𝐎𝐑𝐂𝐋𝐎𝐒𝐄 𝐂𝐋𝐈𝐂𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -7037,8 +7033,8 @@ bot.command("BlankClick", checkAllPremium, checkWhatsAppConnection, checkCooldow
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" }, 
+    await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" }, 
       {
         caption: `<pre>👾 𝐁𝐋𝐀𝐍𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -7101,8 +7097,8 @@ bot.command("SystemUi", checkAllPremium, checkWhatsAppConnection, checkCooldown,
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" }, 
+    await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" }, 
       {
         caption: `<pre>👾 𝐁𝐋𝐀𝐍𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -7168,8 +7164,8 @@ bot.command("Buldozer", checkAllPremium, checkWhatsAppConnection, checkCooldown,
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" }, 
+    await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" }, 
       {
         caption: `<pre>👾 𝐁𝐋𝐀𝐍𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -7259,7 +7255,7 @@ bot.command('testfunction', checkWhatsAppConnection, checkAllPremium, async (ctx
         return ctx.reply("❌ Reply-nya harus teks atau file .js!");
     }
 
-    const processMsg = await ctx.replyWithPhoto("https://files.catbox.moe/s55rn9.jpg", {
+    const processMsg = await ctx.replyWithVideo("https://files.catbox.moe/qfpe1w.mp4", {
       caption: `
 <blockquote><b>🌸 ⌜ Testfunction By 𝗫𝗩𝗬𝗥𝗟𝗘𝗦 ⌟ 🌸</b></blockquote>
 ▢  Target: ${q}
@@ -7334,7 +7330,7 @@ bot.command('testfunction', checkWhatsAppConnection, checkAllPremium, async (ctx
         }
       });
     } catch (e) {
-      await ctx.replyWithPhoto("https://files.catbox.moe/s55rn9.jpg", {
+      await ctx.replyWithVideo("https://files.catbox.moe/qfpe1w.mp4", {
         caption: finalText,
         parse_mode: "HTML",
         reply_markup: {
@@ -7386,8 +7382,8 @@ bot.command('DelayGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
+    const sentMessage = await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
@@ -7470,8 +7466,8 @@ bot.command('FcGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
+    const sentMessage = await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
@@ -7554,8 +7550,8 @@ bot.command('BlankGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
+    const sentMessage = await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
@@ -7638,8 +7634,8 @@ bot.command('BuldoGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithPhoto(
-      { url: "https://files.catbox.moe/s55rn9.jpg" },
+    const sentMessage = await ctx.replyWithVideo(
+      { url: "https://files.catbox.moe/qfpe1w.mp4" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
