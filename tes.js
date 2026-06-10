@@ -1,4 +1,4 @@
-//PERCOBAAN 1
+//PERCOBAAN 2
 (function() {
   'use strict'
   
@@ -387,7 +387,9 @@ let waConnected = false;
 // ==================== FUNGSI GET RANDOM IMAGE ====================
 function getRandomImage() {
     const images = [
-        "https://files.catbox.moe/xl1ufj.jpg"
+        "https://files.catbox.moe/t39am1.jpg",
+        "https://files.catbox.moe/12fl1r.jpg",
+        "https://files.catbox.moe/s55rn9.jpg"
     ];
     return images[Math.floor(Math.random() * images.length)];
 }
@@ -1237,7 +1239,7 @@ bot.command("setch", async (ctx) => {
 
 // ================= CONFIG =================
 const IMAGES = {
-  home: "https://files.catbox.moe/xl1ufj.jpg"
+  home: "https://files.catbox.moe/s55rn9.jpg"
 };
 
 // ================= EDIT MENU =================
@@ -1754,10 +1756,10 @@ function fetchRemote(url) {
 }
 
 ///update
-const filePath = path.resolve(__dirname, "tes.js");
-const repoRaw = "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/tes.js";
+const filePath = path.resolve(__dirname, "index.js");
+const repoRaw = "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/index.js";
 
-bot.command('update', checkOwner, async (ctx) => { 
+bot.command('update', checkOwner, async (ctx) => {
   ctx.reply("⏳ Sedang mengecek update...");
 
   const { data } = await axios.get(repoRaw, {
@@ -1803,7 +1805,7 @@ async function checkUpdate(ctx) {
     const steps = [
       "🛰 Contacting github...",
       "📦 Connected successfully...",
-      "📥 Extracting the tes.js file...",
+      "📥 Extracting the index.js file...",
       "⚙️ Found and searching for the latest version...",
       "🔐 the system successfully detected..."
     ];
@@ -1820,10 +1822,10 @@ async function checkUpdate(ctx) {
     }
 
     const remote = await fetchRemote(
-  "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/tes.js"
+  "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/index.js"
 );
 
-    const local = fs.readFileSync("./tes.js", "utf8");
+    const local = fs.readFileSync("./index.js", "utf8");
 
     const same = normalize(remote) === normalize(local);
 
@@ -1855,7 +1857,7 @@ Tidak ada update terbaru yang di temukan oleh system.`,
 ♻️ STATUS : NEW VERSION SCRIPT
 ⚡ SOURCE : GitHub Raw
 📦 SYSTEM : OUTDATED
-📂 FILE     : tes.js
+📂 FILE     : index.js
 ━━━━━━━━━━━━━━━━━━
 
 💡 Jika Kalian Sudah Pencet /update Tapi masih Muncul kaya gini?
@@ -5745,6 +5747,767 @@ ${text}`
 
 });
 
+//digital ocean
+function getDB() {
+  return JSON.parse(fs.readFileSync("./database/doapi.json"));
+}
+
+function getAPI(slot) {
+  const db = getDB();
+  return db[`ApiDO${slot}`];
+}
+
+function getAllAPIs() {
+  const db = getDB();
+  return Object.entries(db)
+    .filter(([k, v]) => v)
+    .map(([k, v]) => ({ slot: k, api: v }));
+}
+
+bot.command("svapido", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+  const slot = parseInt(args[1]);
+  const key = args.slice(2).join(" ");
+
+  if (!slot || !key) {
+    return ctx.reply("❌ Format: /svapido 1 TOKEN");
+  }
+
+  if (slot < 1 || slot > 50) {
+    return ctx.reply("❌ Slot hanya 1-50");
+  }
+
+  let db = JSON.parse(fs.readFileSync("./database/doapi.json"));
+
+  db[`ApiDO${slot}`] = key;
+
+  fs.writeFileSync("./database/doapi.json", JSON.stringify(db, null, 2));
+
+  return ctx.reply(`✅ ApiDO${slot} berhasil disimpan`);
+});
+
+bot.command("delapido", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+  const slot = parseInt(args[1]);
+
+  if (!slot || slot < 1 || slot > 50) {
+    return ctx.reply("❌ Format: /delapido 1-50");
+  }
+
+  let db = JSON.parse(fs.readFileSync("./database/doapi.json"));
+
+  db[`ApiDO${slot}`] = "";
+
+  fs.writeFileSync("./database/doapi.json", JSON.stringify(db, null, 2));
+
+  return ctx.reply(`🗑️ ApiDO${slot} berhasil dihapus`);
+});
+
+bot.command("listapido", async (ctx) => {
+  const db = JSON.parse(fs.readFileSync("./database/doapi.json"));
+
+  let text = "📦 LIST API DIGITAL OCEAN\n\n";
+
+  for (let i = 1; i <= 50; i++) {
+    text += `${db[`ApiDO${i}`] ? "🟢" : "🔴"} ApiDO${i}\n`;
+  }
+
+  return ctx.reply(text);
+});
+
+const fs = require("fs");
+
+function getVPS() {
+  return JSON.parse(fs.readFileSync("./database/vps.json"));
+}
+
+bot.command("createvps", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+
+  const apiIndex = parseInt(args[1]);   // 1 - 50
+  const name = args[2];
+  const region = args[3];
+  const ram = args[4];
+  const os = args[5];
+
+  if (!apiIndex || !name || !region || !ram || !os) {
+    return ctx.reply(
+`❌ Format:
+/createvps 1 myvps singapore 2gb ubuntu`
+    );
+  }
+
+  if (apiIndex < 1 || apiIndex > 50) {
+    return ctx.reply("❌ API hanya 1–50 (ApiDO1 - ApiDO50)");
+  }
+
+  let db = getVPS();
+  const apiKey = `ApiDO${apiIndex}`;
+
+  if (!db[apiKey]) db[apiKey] = {};
+
+  // cari slot kosong 1–10
+  let slotKosong = null;
+
+  for (let i = 1; i <= 10; i++) {
+    if (!db[apiKey][i] || Object.keys(db[apiKey][i]).length === 0) {
+      slotKosong = i;
+      break;
+    }
+  }
+
+  if (!slotKosong) {
+    return ctx.reply("❌ Slot VPS penuh (maks 10 per API)");
+  }
+
+  db[apiKey][slotKosong] = {
+    id: "vps-" + Date.now(),
+    name,
+    region,
+    ram,
+    os,
+    status: "RUNNING",
+    created_at: new Date().toISOString()
+  };
+
+  fs.writeFileSync("./database/vps.json", JSON.stringify(db, null, 2));
+
+  return ctx.reply(
+`🚀 VPS CREATED
+
+API   : ${apiKey}
+Slot  : ${slotKosong}
+Name  : ${name}
+Region: ${region}
+RAM   : ${ram}
+OS    : ${os}
+Status: RUNNING`
+  );
+});
+
+if (!fs.existsSync("./database")) {
+  fs.mkdirSync("./database");
+}
+
+let data = {};
+
+for (let i = 1; i <= 50; i++) {
+  data[`ApiDO${i}`] = {};
+
+  for (let j = 1; j <= 10; j++) {
+    data[`ApiDO${i}`][j] = {};
+  }
+}
+
+fs.writeFileSync("./database/vps.json", JSON.stringify(data, null, 2));
+
+console.log("✅ vps.json sukses dibuat otomatis");
+
+bot.command("delvps", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+
+  const apiIndex = parseInt(args[1]); // 1 - 50
+  const slot = parseInt(args[2]);     // 1 - 10
+
+  if (!apiIndex || !slot) {
+    return ctx.reply("❌ Format: /delvps 1 3");
+  }
+
+  if (apiIndex < 1 || apiIndex > 50) {
+    return ctx.reply("❌ API hanya 1–50 (ApiDO1 - ApiDO50)");
+  }
+
+  if (slot < 1 || slot > 10) {
+    return ctx.reply("❌ Slot hanya 1–10");
+  }
+
+  let db = getVPS();
+  const apiKey = `ApiDO${apiIndex}`;
+
+  if (!db[apiKey]) {
+    return ctx.reply("❌ API tidak ditemukan");
+  }
+
+  const vps = db[apiKey][slot];
+
+  if (!vps || Object.keys(vps).length === 0) {
+    return ctx.reply("⚠️ Slot sudah kosong");
+  }
+
+  db[apiKey][slot] = {};
+
+  fs.writeFileSync("./database/vps.json", JSON.stringify(db, null, 2));
+
+  return ctx.reply(
+`🗑️ VPS DELETED
+
+API  : ${apiKey}
+Slot : ${slot}
+Name : ${vps.name || "-"}
+Status: REMOVED`
+  );
+});
+
+bot.command("listvps", async (ctx) => {
+  const db = getVPS();
+
+  let text = `📋 LIST VPS DIGITAL OCEAN\n\n`;
+
+  let total = 0;
+
+  for (let i = 1; i <= 50; i++) {
+    const api = `ApiDO${i}`;
+    const data = db[api];
+
+    if (!data) continue;
+
+    let apiHasVps = false;
+    let apiText = `🔹 ${api}\n`;
+
+    for (let slot = 1; slot <= 10; slot++) {
+      const vps = data[slot];
+
+      if (vps && vps.id) {
+        apiHasVps = true;
+        total++;
+
+        apiText += `  ├ Slot ${slot}\n`;
+        apiText += `  │ Name   : ${vps.name}\n`;
+        apiText += `  │ Region : ${vps.region}\n`;
+        apiText += `  │ RAM    : ${vps.ram}\n`;
+        apiText += `  │ OS     : ${vps.os}\n`;
+        apiText += `  │ Status : ${vps.status}\n\n`;
+      }
+    }
+
+    if (apiHasVps) {
+      text += apiText + `\n`;
+    }
+  }
+
+  if (total === 0) {
+    return ctx.reply("📭 Tidak ada VPS yang terdaftar.");
+  }
+
+  text += `━━━━━━━━━━━━━━\n📦 Total VPS: ${total}`;
+
+  return ctx.reply(text);
+});
+
+bot.command("statusvps", async (ctx) => {
+  const db = getVPS();
+
+  let text = `📊 STATUS VPS DIGITAL OCEAN\n\n`;
+
+  let total = 0;
+  let running = 0;
+  let off = 0;
+
+  for (let i = 1; i <= 50; i++) {
+    const api = `ApiDO${i}`;
+    const data = db[api];
+
+    if (!data) continue;
+
+    let apiHas = false;
+    let apiText = `🔹 ${api}\n`;
+
+    for (let slot = 1; slot <= 10; slot++) {
+      const vps = data[slot];
+
+      if (vps && vps.id) {
+        apiHas = true;
+        total++;
+
+        if (vps.status === "RUNNING") {
+          running++;
+          apiText += `  🟢 Slot ${slot} - ${vps.name}\n`;
+        } else {
+          off++;
+          apiText += `  🔴 Slot ${slot} - ${vps.name}\n`;
+        }
+      }
+    }
+
+    if (apiHas) {
+      text += apiText + `\n`;
+    }
+  }
+
+  text += `━━━━━━━━━━━━━━\n`;
+  text += `📦 Total VPS : ${total}\n`;
+  text += `🟢 Running   : ${running}\n`;
+  text += `🔴 OFF       : ${off}`;
+
+  return ctx.reply(text);
+});
+
+const CHECK_INTERVAL = 60000; // 60 detik
+
+function getOwners() {
+  return JSON.parse(fs.readFileSync("./database/owner.json"));
+}
+
+function getDOAPI(slot) {
+  const db = JSON.parse(fs.readFileSync("./database/doapi.json"));
+  return db[`ApiDO${slot}`];
+}
+
+// kirim notif ke semua owner
+async function notify(bot, text) {
+  const owners = getOwners();
+
+  for (let id of owners) {
+    try {
+      await bot.telegram.sendMessage(id, text);
+    } catch (e) {
+      console.log("Notif gagal ke:", id);
+    }
+  }
+}
+
+// cek status droplet
+async function checkDroplet(apiKey, dropletId) {
+  try {
+    const res = await axios.get(
+      `https://api.digitalocean.com/v2/droplets/${dropletId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey}`
+        }
+      }
+    );
+
+    return res.data.droplet.status; // active / off / error
+  } catch (e) {
+    return "error";
+  }
+}
+
+// AUTO DETECT SYSTEM
+function startAutoDetect(bot) {
+  setInterval(async () => {
+    const vpsDB = getVPS();
+
+    for (let i = 1; i <= 50; i++) {
+      const apiKey = getDOAPI(i);
+      if (!apiKey) continue;
+
+      const apiName = `ApiDO${i}`;
+      const apiData = vpsDB[apiName];
+
+      if (!apiData) continue;
+
+      for (let slot = 1; slot <= 10; slot++) {
+        const vps = apiData[slot];
+        if (!vps?.id) continue;
+
+        const status = await checkDroplet(apiKey, vps.id);
+
+        if (status !== "active") {
+          if (vps.status !== "OFF") {
+            vps.status = "OFF";
+
+            await notify(
+              bot,
+`🚨 VPS DOWN DETECTED
+
+🌐 API   : ${apiName}
+🔢 Slot  : ${slot}
+📛 Name  : ${vps.name}
+⚠️ Status: ${status}
+
+🔧 VPS OFF / ERROR terdeteksi`
+            );
+          }
+        } else {
+          vps.status = "RUNNING";
+        }
+      }
+    }
+
+    fs.writeFileSync("./database/vps.json", JSON.stringify(vpsDB, null, 2));
+  }, CHECK_INTERVAL);
+}
+
+module.exports = { startAutoDetect };
+
+bot.command("startvps", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+
+  const apiIndex = parseInt(args[1]);
+  const slot = parseInt(args[2]);
+
+  if (!apiIndex || !slot) {
+    return ctx.reply("❌ Format: /startvps 1 3");
+  }
+
+  const db = getVPS();
+  const apiKey = `ApiDO${apiIndex}`;
+
+  const vps = db?.[apiKey]?.[slot];
+
+  if (!vps || Object.keys(vps).length === 0) {
+    return ctx.reply("⚠️ VPS tidak ditemukan");
+  }
+
+  db[apiKey][slot].status = "RUNNING";
+
+  fs.writeFileSync("./database/vps.json", JSON.stringify(db, null, 2));
+
+  return ctx.reply(
+`▶️ VPS STARTED
+
+API   : ${apiKey}
+Slot  : ${slot}
+Name  : ${vps.name}
+Status: RUNNING`
+  );
+});
+
+bot.command("stopvps", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+
+  const apiIndex = parseInt(args[1]); // 1 - 50
+  const slot = parseInt(args[2]);     // 1 - 10
+
+  if (!apiIndex || !slot) {
+    return ctx.reply("❌ Format: /stopvps 1 3");
+  }
+
+  const db = getVPS();
+  const apiKey = `ApiDO${apiIndex}`;
+
+  const vps = db?.[apiKey]?.[slot];
+
+  if (!vps || Object.keys(vps).length === 0) {
+    return ctx.reply("⚠️ VPS tidak ditemukan");
+  }
+
+  db[apiKey][slot].status = "STOPPED";
+
+  fs.writeFileSync("./database/vps.json", JSON.stringify(db, null, 2));
+
+  return ctx.reply(
+`⛔ VPS STOPPED
+
+API   : ${apiKey}
+Slot  : ${slot}
+Name  : ${vps.name}
+Status: STOPPED`
+  );
+});
+
+function saveVPS(data) {
+  fs.writeFileSync("./database/vps.json", JSON.stringify(data, null, 2));
+}
+
+bot.command("rebuildvps", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+
+  const apiIndex = parseInt(args[1]); // 1 - 50
+  const slot = parseInt(args[2]);     // 1 - 10
+
+  if (!apiIndex || !slot) {
+    return ctx.reply("❌ Format: /rebuildvps 1 3");
+  }
+
+  const db = getVPS();
+  const apiKey = `ApiDO${apiIndex}`;
+
+  const vps = db?.[apiKey]?.[slot];
+
+  if (!vps || Object.keys(vps).length === 0) {
+    return ctx.reply("⚠️ VPS tidak ditemukan");
+  }
+
+  // status rebuild
+  db[apiKey][slot].status = "REBUILDING";
+  saveVPS(db);
+
+  await ctx.reply(
+`🔁 REBUILD STARTED
+
+API   : ${apiKey}
+Slot  : ${slot}
+Name  : ${vps.name}
+Status: REBUILDING`
+  );
+
+  // simulasi rebuild delay (biar realistis)
+  setTimeout(() => {
+    const db2 = getVPS();
+
+    if (db2?.[apiKey]?.[slot]) {
+      db2[apiKey][slot].status = "RUNNING";
+      db2[apiKey][slot].rebuild_at = new Date().toISOString();
+      saveVPS(db2);
+    }
+  }, 5000);
+});
+
+bot.command("statusdo", async (ctx) => {
+  const args = ctx.message.text.split(" ");
+  const apiIndex = parseInt(args[1]); // optional
+
+  const db = getVPS();
+
+  let text = `📡 DIGITAL OCEAN STATUS REPORT\n\n`;
+
+  let total = 0;
+  let running = 0;
+  let stopped = 0;
+  let rebuilding = 0;
+
+  const start = apiIndex || 1;
+  const end = apiIndex || 50;
+
+  for (let i = start; i <= end; i++) {
+    const apiKey = `ApiDO${i}`;
+    const data = db[apiKey];
+
+    if (!data) continue;
+
+    let apiText = `🔹 ${apiKey}\n`;
+    let hasVps = false;
+
+    for (let slot = 1; slot <= 10; slot++) {
+      const vps = data[slot];
+
+      if (vps && vps.id) {
+        hasVps = true;
+        total++;
+
+        let status = vps.status || "UNKNOWN";
+
+        if (status === "RUNNING") running++;
+        else if (status === "STOPPED") stopped++;
+        else if (status === "REBUILDING") rebuilding++;
+
+        apiText += `  • Slot ${slot} : ${vps.name}\n`;
+        apiText += `    Status   : ${status}\n`;
+        apiText += `    RAM      : ${vps.ram}\n\n`;
+      }
+    }
+
+    if (hasVps) {
+      text += apiText + "\n";
+    }
+  }
+
+  if (total === 0) {
+    return ctx.reply("📭 Tidak ada VPS aktif");
+  }
+
+  text += `━━━━━━━━━━━━━━\n`;
+  text += `📦 TOTAL VPS : ${total}\n`;
+  text += `🟢 RUNNING   : ${running}\n`;
+  text += `🔴 STOPPED   : ${stopped}\n`;
+  text += `🟡 REBUILD   : ${rebuilding}`;
+
+  return ctx.reply(text);
+});
+
+//install panel
+bot.command("installpanel", async (ctx) => {
+  const chatId = ctx.chat.id;
+  const senderId = ctx.from.id;
+
+  const match = ctx.message.text.replace("/installpanel", "").trim();
+  const text = match;
+
+  if (!isOwner(senderId) && !adminUsers.includes(senderId)) {
+    return ctx.reply("❌ Akses di tolak, kamu bukan admin.");
+  }
+
+  if (!text) {
+    return ctx.reply(`❗ FORMAT SALAH
+
+/ installpanel ipvps|password|domainpnl|domainnode|ramvps
+
+Contoh:
+/installpanel 1.1.1.1|password123|panel.domain.com|node.domain.com|8000`);
+  }
+
+  const t = text.split("|");
+  if (t.length < 5) {
+    return ctx.reply("❌ Format salah! harus 5 parameter");
+  }
+
+  const [ipvps, passwd, subdomain, domainnode, ramvps] = t;
+
+  const conn = new Client();
+
+  const password = "admin";
+  const command = "bash <(curl -s https://pterodactyl-installer.se)";
+  const commandWings = "bash <(curl -s https://pterodactyl-installer.se)";
+
+  let lastMsgId;
+
+  conn.on("ready", async () => {
+    const msg1 = await ctx.reply("🚀 INSTALL PANEL DIMULAI...");
+    lastMsgId = msg1.message_id;
+
+    conn.exec(command, (err, stream) => {
+      if (err) throw err;
+
+      stream.on("close", async () => {
+        await ctx.telegram.deleteMessage(chatId, lastMsgId).catch(() => {});
+        const msg2 = await ctx.reply("🛠 INSTALL WINGS...");
+        lastMsgId = msg2.message_id;
+
+        installWings(conn);
+      });
+
+      stream.on("data", (data) => {
+        handlePanelInstallationInput(data, stream, subdomain, password);
+      });
+    });
+  });
+
+  conn.connect({
+    host: ipvps,
+    port: 22,
+    username: "root",
+    password: passwd
+  });
+
+  function installWings(conn) {
+    conn.exec(commandWings, (err, stream) => {
+      if (err) throw err;
+
+      stream.on("close", async () => {
+        await ctx.telegram.deleteMessage(chatId, lastMsgId).catch(() => {});
+        const msg3 = await ctx.reply("📡 CREATE NODE...");
+        lastMsgId = msg3.message_id;
+
+        createNode(conn);
+      });
+
+      stream.on("data", (data) => {
+        handleWingsInstallationInput(data, stream, domainnode, subdomain);
+      });
+    });
+  }
+
+  function createNode(conn) {
+    conn.exec(config.bash, (err, stream) => {
+      if (err) throw err;
+
+      stream.on("close", async () => {
+        await ctx.telegram.deleteMessage(chatId, lastMsgId).catch(() => {});
+        const msg4 = await ctx.reply("⚙ FINAL CONFIG...");
+        lastMsgId = msg4.message_id;
+
+        const cmdCfg = `
+cd /var/www/pterodactyl && php artisan p:node:configuration 1 > /etc/pterodactyl/config.yml && chmod 600 /etc/pterodactyl/config.yml && systemctl restart wings
+        `;
+
+        conn.exec(cmdCfg, async (err2, stream2) => {
+          if (err2) {
+            return ctx.reply("❌ Gagal config wings");
+          }
+
+          stream2.on("close", async () => {
+            await ctx.telegram.deleteMessage(chatId, lastMsgId).catch(() => {});
+            sendPanelData();
+            conn.end();
+          });
+        });
+      });
+
+      stream.on("data", (data) => {
+        handleNodeCreationInput(data, stream, domainnode, ramvps);
+      });
+    });
+  }
+
+  function sendPanelData() {
+    ctx.replyWithHTML(`
+<b>✅ INSTALL PANEL SELESAI</b>
+
+🌐 IP: <code>${ipvps}</code>
+🔐 PASS: <code>${passwd}</code>
+
+👤 USER: admin
+🔑 PASS: ${password}
+🌐 DOMAIN: ${subdomain}
+
+💚 DONE INSTALL PANEL
+    `);
+  }
+
+  function handlePanelInstallationInput(data, stream, subdomain, password) {
+    const str = data.toString();
+    if (str.includes("Input")) {
+      stream.write("0\n\n\n1248\nAsia/Jakarta\nadmin@gmail.com\nadmin\nadmin\n");
+      stream.write(password + "\n");
+      stream.write(subdomain + "\n");
+      stream.write("y\ny\ny\n");
+    }
+  }
+
+  function handleWingsInstallationInput(data, stream) {
+    const str = data.toString();
+    if (str.includes("Input")) {
+      stream.write("1\ny\ny\n");
+      stream.write(subdomain + "\n");
+    }
+  }
+
+  function handleNodeCreationInput(data, stream) {
+    stream.write(`${config.tokeninstall}\n4\nSGP\nNODE\n${ramvps}\n`);
+  }
+});
+
+//uninstall panel
+bot.command("uninstallpanel", async (ctx) => {
+  const chatId = ctx.chat.id;
+  const senderId = ctx.from.id;
+
+  const text = ctx.message.text.replace("/uninstallpanel", "").trim();
+
+  if (!isOwner(senderId) && !adminUsers.includes(senderId)) {
+    return ctx.reply("❌ Akses ditolak.");
+  }
+
+  if (!text.includes("|")) {
+    return ctx.reply("Format: /uninstallpanel ip|password");
+  }
+
+  const [ip, password] = text.split("|");
+
+  const conn = new Client();
+
+  ctx.reply("📡 CONNECTING VPS...");
+
+  conn.on("ready", () => {
+    conn.exec("bash <(curl -s https://pterodactyl-installer.se)", (err, stream) => {
+      if (err) return ctx.reply("❌ gagal");
+
+      stream.on("data", (data) => {
+        const out = data.toString();
+
+        if (out.includes("Input 0-6")) stream.write("6\n");
+        if (out.includes("remove panel")) stream.write("y\n");
+        if (out.includes("Wings")) stream.write("y\n");
+      });
+
+      stream.on("close", () => {
+        conn.end();
+        ctx.reply("✅ UNINSTALL SELESAI");
+      });
+    });
+  });
+
+  conn.connect({
+    host: ip,
+    port: 22,
+    username: "root",
+    password
+  });
+});
+
 // ================= CONNECT ================= //
 bot.command("connect", checkOwner, async (ctx) => {
   try {
@@ -5785,7 +6548,7 @@ bot.command("connect", checkOwner, async (ctx) => {
     const formattedCode = code.match(/.{1,4}/g)?.join("-") || code;
 
     const msg = await ctx.replyWithPhoto(
-  "https://files.catbox.moe/xl1ufj.jpg",//ganti jadi url catbox gambar lu
+  "https://files.catbox.moe/s55rn9.jpg",//ganti jadi url catbox gambar lu
       {
         caption:
 `
@@ -5860,8 +6623,8 @@ bot.command("DelayInvisV1", checkAllPremium, checkWhatsAppConnection, checkCoold
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithVideo(
-      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
+    await ctx.replyWithPhoto(
+      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : DELAY INVISIBLE V2
@@ -5916,8 +6679,8 @@ bot.command("DelayInvisV2", checkAllPremium, checkWhatsAppConnection, checkCoold
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithVideo(
-      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
+    await ctx.replyWithPhoto(
+      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : DELAY INVISIBLE V2
@@ -5972,8 +6735,8 @@ bot.command("SpamDelayAndro", checkAllPremium, checkWhatsAppConnection, checkCoo
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithVideo(
-      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
+    await ctx.replyWithPhoto(
+      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : INVISIBLE DELAY SPAM
@@ -6032,8 +6795,8 @@ bot.command("SpamFcIos", checkAllPremium, checkWhatsAppConnection, checkCooldown
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithVideo(
-      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
+    await ctx.replyWithPhoto(
+      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>☠️ MODE : INVISIBLE FC X IOS
@@ -6088,8 +6851,8 @@ bot.command("zdelay", checkAllPremium, checkWhatsAppConnection, checkCooldown, a
     });
 
     // 🚀 SEND PHOTO (FIX)
-    await ctx.replyWithVideo(
-      "https://files.catbox.moe/qfpe1w.mp4", // ✅ FIX DISINI
+    await ctx.replyWithPhoto(
+      "https://files.catbox.moe/s55rn9.jpg", // ✅ FIX DISINI
       {
         caption: `
 <blockquote><pre>💤 MODE : INVISIBLE DELAY X BULDOZ
@@ -6147,8 +6910,8 @@ bot.command("FcClick", checkAllPremium, checkWhatsAppConnection, checkCooldown, 
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" },
+    await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `<pre>👾 𝐅𝐑𝐄𝐄𝐙𝐄 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -6211,8 +6974,8 @@ bot.command("DelayVisible", checkAllPremium, checkWhatsAppConnection, checkCoold
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" },
+    await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `<pre>👾 𝐅𝐎𝐑𝐂𝐋𝐎𝐒𝐄 𝐂𝐋𝐈𝐂𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -6274,8 +7037,8 @@ bot.command("BlankClick", checkAllPremium, checkWhatsAppConnection, checkCooldow
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" }, 
+    await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" }, 
       {
         caption: `<pre>👾 𝐁𝐋𝐀𝐍𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -6338,8 +7101,8 @@ bot.command("SystemUi", checkAllPremium, checkWhatsAppConnection, checkCooldown,
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" }, 
+    await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" }, 
       {
         caption: `<pre>👾 𝐁𝐋𝐀𝐍𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -6405,8 +7168,8 @@ bot.command("Buldozer", checkAllPremium, checkWhatsAppConnection, checkCooldown,
     });
 
     // 🚀 PROCESSING
-    await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" }, 
+    await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" }, 
       {
         caption: `<pre>👾 𝐁𝐋𝐀𝐍𝐊 𝐁𝐔𝐆𝐒 𝐈𝐍𝐅𝐎𝐑𝐌𝐀𝐓𝐈𝐎𝐍
 ━━━━━━━━━━━━━━━
@@ -6496,7 +7259,7 @@ bot.command('testfunction', checkWhatsAppConnection, checkAllPremium, async (ctx
         return ctx.reply("❌ Reply-nya harus teks atau file .js!");
     }
 
-    const processMsg = await ctx.replyWithVideo("https://files.catbox.moe/qfpe1w.mp4", {
+    const processMsg = await ctx.replyWithPhoto("https://files.catbox.moe/s55rn9.jpg", {
       caption: `
 <blockquote><b>🌸 ⌜ Testfunction By 𝗫𝗩𝗬𝗥𝗟𝗘𝗦 ⌟ 🌸</b></blockquote>
 ▢  Target: ${q}
@@ -6571,7 +7334,7 @@ bot.command('testfunction', checkWhatsAppConnection, checkAllPremium, async (ctx
         }
       });
     } catch (e) {
-      await ctx.replyWithVideo("https://files.catbox.moe/qfpe1w.mp4", {
+      await ctx.replyWithPhoto("https://files.catbox.moe/s55rn9.jpg", {
         caption: finalText,
         parse_mode: "HTML",
         reply_markup: {
@@ -6623,8 +7386,8 @@ bot.command('DelayGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" },
+    const sentMessage = await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
@@ -6707,8 +7470,8 @@ bot.command('FcGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" },
+    const sentMessage = await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
@@ -6791,8 +7554,8 @@ bot.command('BlankGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" },
+    const sentMessage = await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
@@ -6875,8 +7638,8 @@ bot.command('BuldoGroup', async (ctx) => {
       groupJid = joinResult;
     }
 
-    const sentMessage = await ctx.replyWithVideo(
-      { url: "https://files.catbox.moe/qfpe1w.mp4" },
+    const sentMessage = await ctx.replyWithPhoto(
+      { url: "https://files.catbox.moe/s55rn9.jpg" },
       {
         caption: `
 <blockquote>⬡═―—⊱ ⎧ BULL CRASHER ⎭ ⊰―—═⬡
