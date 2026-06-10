@@ -4335,14 +4335,7 @@ bot.command("hd", async (ctx) => {
   }
 });
 
-// ================= GITHUB  ================= //
-
-const axios = require("axios");
-const math = require("mathjs");
-const translate = require("@vitalets/google-translate-api");
-
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-
+//loading bar visual 
 function bar(percent) {
   const total = 10;
   const filled = Math.floor(percent / 10);
@@ -5132,6 +5125,61 @@ ${user.phone}`
       load.message_id,
       null,
       "❌ Gagal mengambil data"
+    );
+
+  }
+
+});
+
+//gihub
+bot.command("github", async (ctx) => {
+
+  const username = ctx.message.text.split(" ")[1];
+
+  if (!username)
+    return ctx.reply("Contoh:\n/github torvalds");
+
+  const load = await runLoading(ctx, "github");
+
+  try {
+
+    const res = await fetch(
+      `https://api.github.com/users/${username}`
+    );
+
+    const data = await res.json();
+
+    if (data.message)
+      throw new Error();
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`💻 GITHUB PROFILE
+
+👤 Username:
+${data.login}
+
+📝 Bio:
+${data.bio || "-"}
+
+👥 Followers:
+${data.followers}
+
+📂 Repo:
+${data.public_repos}
+
+🔗 ${data.html_url}`
+    );
+
+  } catch {
+
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ User GitHub tidak ditemukan"
     );
 
   }
