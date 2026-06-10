@@ -1754,8 +1754,8 @@ function fetchRemote(url) {
 }
 
 ///update
-const filePath = path.resolve(__dirname, "index.js");
-const repoRaw = "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/index.js";
+const filePath = path.resolve(__dirname, "tes.js");
+const repoRaw = "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/tes.js";
 
 bot.command('update', checkOwner, async (ctx) => {
   ctx.reply("⏳ Sedang mengecek update...");
@@ -1803,7 +1803,7 @@ async function checkUpdate(ctx) {
     const steps = [
       "🛰 Contacting github...",
       "📦 Connected successfully...",
-      "📥 Extracting the index.js file...",
+      "📥 Extracting the tes.js file...",
       "⚙️ Found and searching for the latest version...",
       "🔐 the system successfully detected..."
     ];
@@ -1820,10 +1820,10 @@ async function checkUpdate(ctx) {
     }
 
     const remote = await fetchRemote(
-  "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/index.js"
+  "https://raw.githubusercontent.com/zypher-cloud999/BullZypher/refs/heads/main/tes.js"
 );
 
-    const local = fs.readFileSync("./index.js", "utf8");
+    const local = fs.readFileSync("./tes.js", "utf8");
 
     const same = normalize(remote) === normalize(local);
 
@@ -1855,7 +1855,7 @@ Tidak ada update terbaru yang di temukan oleh system.`,
 ♻️ STATUS : NEW VERSION SCRIPT
 ⚡ SOURCE : GitHub Raw
 📦 SYSTEM : OUTDATED
-📂 FILE     : index.js
+📂 FILE     : tes.js
 ━━━━━━━━━━━━━━━━━━
 
 💡 Jika Kalian Sudah Pencet /update Tapi masih Muncul kaya gini?
