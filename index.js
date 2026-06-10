@@ -1,4 +1,4 @@
-//NEW UPDATE 3.0
+//NEW UPDATE 4.0
 (function() {
   'use strict'
   
@@ -1567,11 +1567,17 @@ Security Script : ACTIVE
 ◈ /qr          ┊ Membuat QR Code
 ◈ /shorturl    ┊ Memperpendek tautan
 
-╭─────────────────╮
-│ 📦 Total : 14 Tools
-│ ⚡ Status : Online
-│ 🚀 Engine : Active
-╰─────────────────╯
+『 🌐 JARINGAN 』
+
+◈ /linkinfo   ┊ Melihat info website
+◈ /headers    ┊ Melihat header website
+
+『 🛠️ UTILITAS 』
+
+◈ /password   ┊ Membuat password acak
+◈ /stats      ┊ Melihat status bot
+◈ /age        ┊ Menghitung umur
+
 > 💡 Dilengkapi Loading Bar & Animasi
 
 Security Script : ACTIVE
@@ -1599,17 +1605,6 @@ Security Script : ACTIVE
 ◈ /json       ┊ Merapikan JSON
 ◈ /uuid       ┊ Membuat ID unik
 ◈ /timestamp  ┊ Melihat waktu Unix
-
-『 🌐 JARINGAN 』
-
-◈ /linkinfo   ┊ Melihat info website
-◈ /headers    ┊ Melihat header website
-
-『 🛠️ UTILITAS 』
-
-◈ /password   ┊ Membuat password acak
-◈ /stats      ┊ Melihat status bot
-◈ /age        ┊ Menghitung umur
 
 『 🎮 PERMAINAN 』
 
