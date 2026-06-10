@@ -1,4 +1,4 @@
-//NEW UPDATE 1.0
+//NEW UPDATE 3.0
 (function() {
   'use strict'
   
@@ -1543,21 +1543,88 @@ Security Script : ACTIVE
 
 
 ` \`\`\`js
-╔═☇〔 ᴛᴏᴏʟs ᴍᴇɴᴜ 2 〕☇═╗
+╔═━━━─── • ───━━━═╗
+ ⚡ 𝗧𝗢𝗢𝗟𝗦 𝗠𝗘𝗡𝗨 𝟮 ⚡
+╚═━━━─── • ───━━━═╝
 
- ʜᴀᴠᴇ ғᴜɴ
-╔═══════════════
-║⌑ /cekidch ⇢ Cek Id Channel Telegram
-║⌑ /jodoh ⇢ cek presentase jodoh
-║⌑ /shio ⇢ Cek Marga
-║⌑ /tebak ⇢ Tebak Angka
-║⌑ /motivasi ⇢ Random Motivasi 
-║⌑ /kepribadian ⇢ Cek Kepribadian
-║⌑ /karir ⇢ Cek Karir Kehidupan
-║⌑ /level ⇢ Cek Level Kehidupan
-║⌑ /harilahir ⇢ Cek Hari Lahir
-║⌑ /koin ⇢ Tebak Coin
-╚══════════════════════════
+『 🎉 HIBURAN & CEK 』
+
+◈ /cekidch     ┊ Melihat ID Channel Telegram
+◈ /jodoh       ┊ Mengecek kecocokan jodoh
+◈ /shio        ┊ Melihat shio berdasarkan tahun lahir
+◈ /tebak       ┊ Bermain tebak angka
+◈ /motivasi    ┊ Mendapatkan motivasi acak
+◈ /kepribadian ┊ Melihat kepribadian acak
+◈ /karir       ┊ Melihat prediksi karir
+◈ /level       ┊ Melihat level kehidupan
+◈ /harilahir   ┊ Mengetahui hari lahir
+◈ /koin        ┊ Melempar koin acak
+
+『 🌐 TOOLS ONLINE 』
+
+◈ /github      ┊ Melihat profil GitHub
+◈ /apk         ┊ Mencari informasi aplikasi
+◈ /qr          ┊ Membuat QR Code
+◈ /shorturl    ┊ Memperpendek tautan
+
+╭─────────────────╮
+│ 📦 Total : 14 Tools
+│ ⚡ Status : Online
+│ 🚀 Engine : Active
+╰─────────────────╯
+> 💡 Dilengkapi Loading Bar & Animasi
+
+Security Script : ACTIVE
+\`\`\`
+`,
+
+` \`\`\`js
+╔═━━━─── • ───━━━═╗
+ ⚡ 𝗧𝗢𝗢𝗟𝗦 𝗠𝗘𝗡𝗨 𝟯 ⚡
+╚═━━━─── • ───━━━═╝
+
+『 🌍 INFORMASI 』
+
+◈ /weather    ┊ Melihat cuaca
+◈ /search     ┊ Mencari informasi
+◈ /ip         ┊ Melihat info IP
+◈ /dns        ┊ Melihat IP domain
+◈ /randomuser ┊ Membuat identitas acak
+
+『 💻 DEVELOPER 』
+
+◈ /calc       ┊ Menghitung angka
+◈ /hash       ┊ Membuat hash data
+◈ /base64     ┊ Mengubah format Base64
+◈ /json       ┊ Merapikan JSON
+◈ /uuid       ┊ Membuat ID unik
+◈ /timestamp  ┊ Melihat waktu Unix
+
+『 🌐 JARINGAN 』
+
+◈ /linkinfo   ┊ Melihat info website
+◈ /headers    ┊ Melihat header website
+
+『 🛠️ UTILITAS 』
+
+◈ /password   ┊ Membuat password acak
+◈ /stats      ┊ Melihat status bot
+◈ /age        ┊ Menghitung umur
+
+『 🎮 PERMAINAN 』
+
+◈ /tod        ┊ Bermain Truth or Dare
+◈ /slot       ┊ Bermain mesin slot
+◈ /spin       ┊ Memutar roda hadiah
+◈ /quiz       ┊ Menjawab soal acak
+◈ /misterybox ┊ Membuka kotak hadiah
+
+╭─────────────────╮
+│ 📦 Total : 19 Tools
+│ ⚡ Status : Online
+│ 🚀 Engine : Active
+╰─────────────────╯
+> 💡 Dilengkapi Loading Bar & Animasi
 
 Security Script : ACTIVE
 \`\`\`
@@ -4277,6 +4344,508 @@ bot.command("hd", async (ctx) => {
     );
   }
 });
+
+// ================= GITHUB  ================= //
+bot.command("github", async (ctx) => {
+  const user = ctx.message.text.split(" ")[1];
+
+  if (!user) return ctx.reply("Contoh: /github torvalds");
+
+  try {
+    const res = await fetch(`https://api.github.com/users/${user}`);
+
+    if (!res.ok) {
+      return ctx.reply("❌ User tidak ditemukan");
+    }
+
+    const data = await res.json();
+
+    await ctx.replyWithPhoto(data.avatar_url, {
+      caption:
+`🐙 GitHub Stalk
+
+👤 Username: ${data.login}
+📝 Bio: ${data.bio || "-"}
+👥 Followers: ${data.followers}
+👤 Following: ${data.following}
+📦 Repo: ${data.public_repos}
+
+🔗 ${data.html_url}`
+    });
+
+  } catch {
+    ctx.reply("❌ Error");
+  }
+});
+
+//apk
+bot.command("apk", async (ctx) => {
+
+  const q = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!q) return ctx.reply("Contoh: /apk WhatsApp");
+
+  const url =
+    `https://play.google.com/store/search?c=apps&q=${encodeURIComponent(q)}`;
+
+  ctx.reply(
+`📱 APK Search
+
+🔎 Query: ${q}
+
+🌐 ${url}`
+  );
+});
+
+//qr
+bot.command("qr", async (ctx) => {
+  const text = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!text) return ctx.reply("Contoh: /qr Halo Dunia");
+
+  const url = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(text)}`;
+
+  await ctx.replyWithPhoto(url);
+});
+
+//ip
+bot.command("ip", async (ctx) => {
+  const ip = ctx.message.text.split(" ")[1];
+
+  if (!ip) return ctx.reply("Contoh: /ip 8.8.8.8");
+
+  const res = await fetch(`http://ip-api.com/json/${ip}`);
+  const data = await res.json();
+
+  ctx.reply(`
+🌍 Negara: ${data.country}
+🏙 Kota: ${data.city}
+📡 ISP: ${data.isp}
+📍 Lat: ${data.lat}
+📍 Lon: ${data.lon}
+`);
+});
+
+//shorturl
+bot.command("shorturl", async (ctx) => {
+  const url = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!url) return ctx.reply("Contoh: /shorturl https://example.com");
+
+  const res = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
+  const short = await res.text();
+
+  ctx.reply(`🔗 Short URL:\n${short}`);
+});
+
+//tod
+const truths = [
+  "Apa rahasia terbesar yang belum pernah kamu ceritakan?",
+  "Siapa crush kamu sekarang?",
+  "Apa kebohongan terakhir yang kamu lakukan?",
+  "Hal paling memalukan yang pernah kamu alami?",
+  "Siapa orang yang paling sering kamu pikirkan?",
+  "Siapa orang terakhir yang kamu stalk di media sosial?",
+  "Siapa crush kamu saat ini?",
+  "Pernah suka sama teman sendiri?",
+  "Apa kebohongan terbesar yang pernah kamu lakukan?",
+  "Apa hal paling memalukan yang pernah terjadi padamu?",
+  "Siapa orang yang paling sering kamu pikirkan akhir-akhir ini?",
+  "Kalau bisa menghapus satu kenangan, kenangan apa itu?",
+  "Apa ketakutan terbesarmu yang jarang diketahui orang?",
+  "Pernah menangis diam-diam? Karena apa?",
+  "Siapa orang yang paling ingin kamu ajak liburan?",
+  "Apa sifat burukmu yang paling kamu sadari?",
+  "Pernah iri dengan seseorang? Siapa dan kenapa?",
+  "Kalau bisa menjadi orang lain selama sehari, kamu mau jadi siapa?",
+  "Apa rahasia yang belum pernah kamu ceritakan ke temanmu?",
+  "Siapa orang yang paling kamu rindukan sekarang?",
+  "Pernah menyukai seseorang tapi tidak pernah mengatakannya?",
+  "Apa hal paling nekat yang pernah kamu lakukan?",
+  "Kalau hari ini adalah hari terakhirmu, siapa yang akan kamu hubungi?",
+  "Apa penyesalan terbesar dalam hidupmu sejauh ini?",
+  "Siapa orang yang paling membuatmu kesal tetapi tetap kamu sayangi?",
+  "Apa pesan terakhir yang kamu hapus sebelum dikirim?",
+  "Pernah pura-pura sakit? Untuk apa?",
+  "Apa alasan terakhir kamu merasa malu banget?",
+  "Kalau semua rahasiamu terbongkar hari ini, apa yang paling bikin panik?",
+  "Apa mimpi paling aneh yang pernah kamu alami?",
+  "Siapa kontak terakhir yang kamu chat?",
+  "Apa hal yang paling kamu banggakan dari dirimu?",
+  "Kalau bisa membaca pikiran satu orang, siapa orangnya?",
+  "Apa hal yang tidak ingin diketahui orang lain tentangmu?",
+  "Pernah menyimpan perasaan lebih dari 1 tahun kepada seseorang?"
+];
+
+const dares = [
+  "Kirim emoji 🗿 ke 3 chat terakhir.",
+  "Ganti nama profil jadi 'Aku Kulkas' selama 10 menit.",
+  "Ketik 'Aku suka rumput' di grup.",
+  "Kirim foto benda terdekat.",
+  "Voice note bilang 'Saya kentang goreng'.",
+  "Kirim voice note 10 detik menyanyikan lagu bebas.",
+  "Tag 3 teman dan kasih mereka satu pujian.",
+  "Ganti foto profil dengan emoji 🗿 selama 15 menit.",
+  "Ketik alfabet terbalik tanpa salah.",
+  "Kirim selfie dengan ekspresi paling aneh.",
+  "Buat pantun lucu dalam 1 menit.",
+  "Spam 10 emoji random dalam satu pesan.",
+  "Tulis 5 fakta unik tentang dirimu.",
+  "Kirim screenshot aplikasi yang terakhir dibuka.",
+  "Buat status 'Aku suka makan sendal' selama 10 menit.",
+  "Voice note menirukan suara robot selama 15 detik.",
+  "Kirim pesan 'Halo calon miliarder' ke teman pilihanmu.",
+  "Ceritakan kejadian paling memalukan yang masih kamu ingat.",
+  "Tulis puisi 4 baris tentang nasi goreng.",
+  "Kirim foto benda paling aneh yang ada di sekitarmu.",
+  "Buat cerita horor 3 kalimat.",
+  "Ubah nama Telegram menjadi 'Sang Legenda' selama 10 menit.",
+  "Kirim GIF pertama yang muncul saat mencari 'kucing'.",
+  "Buat tebakan receh dan kirim ke grup.",
+  "Ketik pesan tanpa huruf vokal."
+];
+
+bot.command("tod", async (ctx) => {
+
+  const msg = await ctx.reply(
+`🎭 Truth Or Dare
+
+🪙 Melempar koin...
+█▒▒▒▒▒▒▒▒▒ 10%`
+  );
+
+  await new Promise(r => setTimeout(r, 500));
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`🎭 Truth Or Dare
+
+🪙 Koin berputar...
+████▒▒▒▒▒▒ 40%`
+  );
+
+  await new Promise(r => setTimeout(r, 700));
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`🎭 Truth Or Dare
+
+🎲 Menentukan hasil...
+████████▒▒ 80%`
+  );
+
+  await new Promise(r => setTimeout(r, 800));
+
+  const hasil = Math.random() < 0.5
+    ? "TRUTH"
+    : "DARE";
+
+  if (hasil === "TRUTH") {
+
+    const truth =
+      truths[Math.floor(Math.random() * truths.length)];
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      msg.message_id,
+      null,
+`🎭 TRUTH OR DARE
+
+🪙 Hasil Koin:
+TRUTH
+
+🧠 Pertanyaan:
+
+${truth}
+
+██████████ 100%`
+    );
+
+  } else {
+
+    const dare =
+      dares[Math.floor(Math.random() * dares.length)];
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      msg.message_id,
+      null,
+`🎭 TRUTH OR DARE
+
+🪙 Hasil Koin:
+DARE
+
+💀 Tantangan:
+
+${dare}
+
+██████████ 100%`
+    );
+
+  }
+
+});
+
+//slot
+bot.command("slot", (ctx) => {
+  const items = ["🍒", "🍋", "🍇", "💎", "⭐"];
+
+  const a = items[Math.floor(Math.random() * items.length)];
+  const b = items[Math.floor(Math.random() * items.length)];
+  const c = items[Math.floor(Math.random() * items.length)];
+
+  const win = a === b && b === c;
+
+  ctx.reply(
+`${a} | ${b} | ${c}
+
+${win ? "🎉 JACKPOT!" : "😢 Coba Lagi"}`
+  );
+});
+
+//spin
+bot.command("spin", (ctx) => {
+  const hadiah = [
+    "💎 Diamond",
+    "💰 1000 Coin",
+    "🍔 Burger",
+    "😢 Zonk",
+    "🎁 Mystery Box"
+  ];
+
+  const result =
+    hadiah[Math.floor(Math.random() * hadiah.length)];
+
+  ctx.reply(`🎡 Wheel Berputar...\n\n🎉 Kamu mendapat:\n${result}`);
+});
+
+//quiz
+const soalQuiz = [
+{ q: "Ibukota Indonesia?", a: "jakarta" },
+{ q: "Planet terbesar di tata surya?", a: "jupiter" },
+{ q: "2 + 2 ?", a: "4" },
+{ q: "Bahasa pemrograman yang memakai Node.js?", a: "javascript" },
+{ q: "Lambang kimia air?", a: "h2o" },
+{ q: "Presiden pertama Indonesia?", a: "soekarno" },
+{ q: "Benua terbesar di dunia?", a: "asia" },
+{ q: "Hewan tercepat di darat?", a: "cheetah" },
+{ q: "Gunung tertinggi di dunia?", a: "everest" },
+{ q: "Mata uang Jepang?", a: "yen" },
+{ q: "5 x 8 ?", a: "40" },
+{ q: "Planet merah?", a: "mars" },
+{ q: "Ibu kota Jepang?", a: "tokyo" },
+{ q: "Ibu kota Inggris?", a: "london" },
+{ q: "Negara Menara Eiffel?", a: "prancis" },
+{ q: "Siapa pencipta Facebook?", a: "mark zuckerberg" },
+{ q: "Apa kepanjangan HTML?", a: "hypertext markup language" },
+{ q: "Apa kepanjangan CSS?", a: "cascading style sheets" },
+{ q: "Apa kepanjangan RAM?", a: "random access memory" },
+{ q: "Apa kepanjangan CPU?", a: "central processing unit" },
+{ q: "1 hari ada berapa jam?", a: "24" },
+{ q: "Warna bendera Indonesia?", a: "merah putih" },
+{ q: "Bulan setelah Januari?", a: "februari" },
+{ q: "Nama satelit bumi?", a: "bulan" },
+{ q: "Hewan simbol Australia?", a: "kanguru" },
+{ q: "Laut terbesar di dunia?", a: "samudra pasifik" },
+{ q: "Siapa penemu lampu?", a: "thomas edison" },
+{ q: "Siapa penemu telepon?", a: "alexander graham bell" },
+{ q: "Negara terbesar di dunia?", a: "rusia" },
+{ q: "Pulau terbesar di Indonesia?", a: "kalimantan" },
+{ q: "10 x 10 ?", a: "100" },
+{ q: "Aplikasi chat milik Meta?", a: "whatsapp" },
+{ q: "Logo Linux berupa hewan?", a: "penguin" },
+{ q: "Planet terdekat dengan matahari?", a: "merkurius" },
+{ q: "Ibu kota Korea Selatan?", a: "seoul" },
+{ q: "Ibu kota Thailand?", a: "bangkok" },
+{ q: "Makanan khas Jepang?", a: "sushi" },
+{ q: "Bahasa resmi Brazil?", a: "portugis" },
+{ q: "Siapa tokoh Harry Potter?", a: "harry potter" },
+{ q: "Benua tempat Mesir?", a: "afrika" },
+{ q: "Hewan terbesar di dunia?", a: "paus biru" },
+{ q: "Apa kepanjangan USB?", a: "universal serial bus" },
+{ q: "Negara asal anime?", a: "jepang" },
+{ q: "Aplikasi berbagi video pendek populer?", a: "tiktok" },
+{ q: "Berapa sisi segitiga?", a: "3" },
+{ q: "Bahasa resmi Indonesia?", a: "bahasa indonesia" },
+{ q: "Siapa pencipta Microsoft?", a: "bill gates" },
+{ q: "Siapa pencipta Tesla?", a: "elon musk" },
+{ q: "Planet bercincin terkenal?", a: "saturnus" },
+{ q: "Benda untuk melihat waktu?", a: "jam" }
+];
+
+const gameQuiz = {};
+
+bot.command("quiz", (ctx) => {
+  const soal = soalQuiz[Math.floor(Math.random() * soalQuiz.length)];
+
+  gameQuiz[ctx.from.id] = soal.a.toLowerCase();
+
+  ctx.reply(
+`🧠 QUIZ
+
+❓ ${soal.q}
+
+💬 Jawab dengan:
+/ans jawaban`
+  );
+});
+
+bot.command("ans", (ctx) => {
+  const user = ctx.from.id;
+
+  if (!gameQuiz[user]) {
+    return ctx.reply("❌ Tidak ada quiz aktif.\nGunakan /quiz");
+  }
+
+  const jawab = ctx.message.text
+    .split(" ")
+    .slice(1)
+    .join(" ")
+    .toLowerCase();
+
+  const benar = gameQuiz[user];
+
+  if (jawab === benar) {
+    delete gameQuiz[user];
+
+    ctx.reply(
+`🎉 BENAR!
+
+✅ Jawaban:
+${benar}`
+    );
+  } else {
+    ctx.reply(
+`❌ SALAH!
+
+💡 Coba lagi`
+    );
+  }
+});
+
+//mistery box
+bot.command("misterybox", async (ctx) => {
+
+  const rewards = {
+    Common: [
+      "🍞 Roti", "🥔 Kentang", "🧃 Jus Jeruk", "🪨 Batu",
+      "🥚 Telur Misterius", "🍪 Biskuit", "🥤 Soda",
+      "📄 Kertas Bekas", "🧦 Kaos Kaki", "🪵 Kayu"
+    ],
+
+    Rare: [
+      "💰 1.000 Coin", "🎟️ Lucky Ticket", "🗝️ Kunci Perak",
+      "💎 1 Diamond", "📦 Mini Loot Box", "🎁 Gift Box",
+      "🔋 Baterai Langka", "🧸 Boneka", "🎮 Voucher Game",
+      "💳 Kartu Misterius"
+    ],
+
+    Epic: [
+      "💸 10.000 Coin", "💎 5 Diamond", "👑 Mahkota Emas",
+      "⚔️ Pedang Naga", "🐉 Telur Naga", "🚀 Roket Mini",
+      "🛡️ Shield Legendaris", "🐺 Serigala Peliharaan",
+      "🪙 50.000 Coin", "🎯 Senjata Epic"
+    ],
+
+    Legendary: [
+      "🚗 Mobil Sport", "🏰 Kastil Pribadi", "💎 50 Diamond",
+      "🪙 100.000 Coin", "🦄 Unicorn", "👑 Raja Kerajaan",
+      "🛩️ Jet Pribadi", "🏎️ Lamborghini", "🐲 Naga Emas",
+      "💰 1.000.000 Coin"
+    ],
+
+    Mythic: [
+      "🌌 Galaxy Box", "👑 Raja Semesta", "💎 999 Diamond",
+      "🏆 Trophy Abadi", "☄️ Meteor Langka", "🌠 Bintang Keberuntungan",
+      "🐉 Naga Mythic", "🪐 Planet Pribadi",
+      "💸 999.999.999 Coin", "⚡ Kekuatan Dewa"
+    ]
+  };
+
+  const msg = await ctx.reply(
+`📦 MYSTERY BOX
+
+🔓 Membuka kotak...
+██▒▒▒▒▒▒▒▒ 20%`
+  );
+
+  await new Promise(r => setTimeout(r, 1000));
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`📦 MYSTERY BOX
+
+✨ Mencari hadiah...
+█████▒▒▒▒▒ 50%`
+  );
+
+  await new Promise(r => setTimeout(r, 1000));
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`📦 MYSTERY BOX
+
+🎲 Menentukan rarity...
+████████▒▒ 80%`
+  );
+
+  await new Promise(r => setTimeout(r, 1000));
+
+  let rarity;
+  const chance = Math.random() * 100;
+
+  if (chance < 50) rarity = "Common";
+  else if (chance < 80) rarity = "Rare";
+  else if (chance < 95) rarity = "Epic";
+  else if (chance < 99) rarity = "Legendary";
+  else rarity = "Mythic";
+
+  const hadiah =
+    rewards[rarity][
+      Math.floor(Math.random() * rewards[rarity].length)
+    ];
+
+  const emoji = {
+    Common: "⚪",
+    Rare: "🔵",
+    Epic: "🟣",
+    Legendary: "🟡",
+    Mythic: "🔴"
+  };
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`🎁 MYSTERY BOX
+
+🏆 Hadiah:
+${hadiah}
+
+${emoji[rarity]} Rarity:
+${rarity}
+
+██████████ 100%
+
+🍀 Drop Rate
+
+⚪ Common      50%
+🔵 Rare        30%
+🟣 Epic        15%
+🟡 Legendary    4%
+🔴 Mythic       1%`
+  );
+
+});
+
 // ================= CONNECT ================= //
 bot.command("connect", checkOwner, async (ctx) => {
   try {
