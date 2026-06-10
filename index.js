@@ -1619,11 +1619,6 @@ Security Script : ACTIVE
 ◈ /quiz       ┊ Menjawab soal acak
 ◈ /misterybox ┊ Membuka kotak hadiah
 
-╭─────────────────╮
-│ 📦 Total : 19 Tools
-│ ⚡ Status : Online
-│ 🚀 Engine : Active
-╰─────────────────╯
 > 💡 Dilengkapi Loading Bar & Animasi
 
 Security Script : ACTIVE
