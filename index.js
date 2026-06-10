@@ -1,4 +1,4 @@
-//NEW UPDATE 4.0
+//NEW UPDATE 5.0
 (function() {
   'use strict'
   
@@ -4336,36 +4336,806 @@ bot.command("hd", async (ctx) => {
 });
 
 // ================= GITHUB  ================= //
-bot.command("github", async (ctx) => {
-  const user = ctx.message.text.split(" ")[1];
 
-  if (!user) return ctx.reply("Contoh: /github torvalds");
+const axios = require("axios");
+const math = require("mathjs");
+const translate = require("@vitalets/google-translate-api");
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+function bar(percent) {
+  const total = 10;
+  const filled = Math.floor(percent / 10);
+
+  return "█".repeat(filled) +
+         "▒".repeat(total - filled) +
+         ` ${percent}%`;
+}
+
+const loadingText = {
+  weather: [
+    "🌍 Mencari lokasi...",
+    "☁️ Menghubungi server cuaca...",
+    "🌤 Mengambil data atmosfer...",
+    "📊 Menyusun laporan cuaca...",
+    "✅ Cuaca berhasil ditemukan..."
+  ],
+
+  calc: [
+    "🧮 Membaca rumus...",
+    "⚙️ Menghitung operasi...",
+    "📊 Memproses angka...",
+    "✅ Hasil perhitungan siap..."
+  ],
+
+  search: [
+    "🔍 Menelusuri Wikipedia...",
+    "📚 Mengambil artikel...",
+    "🧠 Menganalisis informasi...",
+    "✅ Hasil pencarian siap..."
+  ],
+
+  linkinfo: [
+    "🔗 Menghubungi website...",
+    "🛡️ Memeriksa keamanan...",
+    "📡 Mengambil header...",
+    "📊 Menganalisis server...",
+    "✅ Informasi website siap..."
+  ],
+  hash: [
+  "🔐 Membaca data...",
+  "⚙️ Membuat hash...",
+  "🛡️ Mengamankan output...",
+  "✅ Hash berhasil dibuat..."
+],
+
+base64: [
+  "🔄 Memproses data...",
+  "📦 Mengonversi format...",
+  "⚡ Menyusun hasil...",
+  "✅ Selesai..."
+],
+
+json: [
+  "📦 Membaca JSON...",
+  "🔍 Memvalidasi struktur...",
+  "🧹 Merapikan format...",
+  "✅ JSON siap digunakan..."
+],
+
+uuid: [
+  "🆔 Menyiapkan generator...",
+  "⚙️ Membuat identitas unik...",
+  "🔒 Memastikan keunikan...",
+  "✅ UUID berhasil dibuat..."
+],
+
+ip: [
+  "🌍 Melacak IP...",
+  "📡 Menghubungi database...",
+  "🗺️ Mengambil lokasi...",
+  "✅ Informasi IP siap..."
+],
+dns: [
+  "🌐 Menghubungi DNS server...",
+  "📡 Mencari record domain...",
+  "🔍 Memproses alamat IP...",
+  "✅ DNS berhasil ditemukan..."
+],
+
+timestamp: [
+  "⏱ Mengambil waktu server...",
+  "⚙️ Mengonversi timestamp...",
+  "📅 Menyesuaikan format...",
+  "✅ Timestamp siap..."
+],
+
+stats: [
+  "📊 Mengecek sistem bot...",
+  "⚡ Mengambil uptime...",
+  "📡 Memeriksa performa...",
+  "✅ Statistik siap..."
+],
+
+age: [
+  "🎂 Membaca tahun lahir...",
+  "📅 Menghitung umur...",
+  "🧮 Menyesuaikan kalender...",
+  "✅ Umur berhasil dihitung..."
+],
+
+headers: [
+  "📡 Menghubungi website...",
+  "📥 Mengambil header...",
+  "🔍 Menganalisis response...",
+  "✅ Header siap ditampilkan..."
+],
+password: [
+  "🔐 Menyiapkan generator password...",
+  "⚙️ Mengacak karakter...",
+  "🛡️ Memperkuat keamanan...",
+  "✅ Password berhasil dibuat..."
+],
+
+randomuser: [
+  "👤 Menghubungi database pengguna...",
+  "🌍 Mengambil identitas acak...",
+  "📄 Menyusun profil...",
+  "✅ Profil berhasil dibuat..."
+],
+github: [
+  "💻 Mencari profil GitHub...",
+  "📂 Mengambil repository...",
+  "📊 Mengumpulkan statistik...",
+  "✅ Profil ditemukan..."
+],
+
+slot: [
+  "🎰 Memutar mesin slot...",
+  "🍀 Menguji keberuntungan...",
+  "💰 Menghitung hadiah...",
+  "✅ Hasil keluar..."
+],
+
+spin: [
+  "🎡 Memutar roda...",
+  "🎲 Mengacak hadiah...",
+  "🎁 Menentukan hasil...",
+  "✅ Hadiah ditemukan..."
+]
+};
+
+async function runLoading(ctx, type) {
+  const steps = loadingText[type];
+
+  const msg = await ctx.reply(
+    `${steps[0]}\n${bar(0)}`
+  );
+
+  for (let i = 1; i < steps.length; i++) {
+    await sleep(500);
+
+    const percent = Math.floor(
+      (i / (steps.length - 1)) * 100
+    );
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      msg.message_id,
+      null,
+      `${steps[i]}\n${bar(percent)}`
+    );
+  }
+
+  return msg;
+}
+
+//weather
+bot.command("weather", async (ctx) => {
+  const city = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!city)
+    return ctx.reply("Contoh: /weather Bandung");
+
+  const load = await runLoading(ctx, "weather");
 
   try {
-    const res = await fetch(`https://api.github.com/users/${user}`);
 
-    if (!res.ok) {
-      return ctx.reply("❌ User tidak ditemukan");
+    const geo = await axios.get(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`
+    );
+
+    if (!geo.data.results) {
+      return ctx.telegram.editMessageText(
+        ctx.chat.id,
+        load.message_id,
+        null,
+        "❌ Kota tidak ditemukan"
+      );
     }
+
+    const {
+      latitude,
+      longitude,
+      name,
+      country
+    } = geo.data.results[0];
+
+    const weather = await axios.get(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`
+    );
+
+    const w = weather.data.current_weather;
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🌤 WEATHER REPORT
+
+📍 ${name}, ${country}
+🌡 Suhu : ${w.temperature}°C
+💨 Angin : ${w.windspeed} km/h`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Gagal mengambil data cuaca"
+    );
+  }
+});
+
+//calcl
+bot.command("calc", async (ctx) => {
+  const expr = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!expr)
+    return ctx.reply("Contoh: /calc 25*4+100");
+
+  const load = await runLoading(ctx, "calc");
+
+  try {
+
+    const result = math.evaluate(expr);
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🧮 CALCULATOR
+
+📥 Input:
+${expr}
+
+📤 Hasil:
+${result}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Rumus tidak valid"
+    );
+  }
+});
+
+//search
+bot.command("search", async (ctx) => {
+  const query = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!query)
+    return ctx.reply("Contoh: /search Indonesia");
+
+  const load = await runLoading(ctx, "search");
+
+  try {
+
+    const res = await axios.get(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`
+    );
+
+    if (!res.data.extract) {
+      return ctx.telegram.editMessageText(
+        ctx.chat.id,
+        load.message_id,
+        null,
+        "❌ Informasi tidak ditemukan"
+      );
+    }
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🔍 ${res.data.title}
+
+${res.data.extract}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Search gagal"
+    );
+  }
+});
+
+//linkinfo
+bot.command("linkinfo", async (ctx) => {
+  const url = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!url)
+    return ctx.reply("Contoh: /linkinfo https://google.com");
+
+  const load = await runLoading(ctx, "linkinfo");
+
+  try {
+
+    const res = await axios.get(url, {
+      timeout: 10000,
+      validateStatus: () => true
+    });
+
+    const h = res.headers;
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🔗 WEBSITE ANALYZER
+
+🌐 URL:
+${url}
+
+📊 Status:
+${res.status}
+
+🖥 Server:
+${h.server || "-"}
+
+📦 Content-Type:
+${h["content-type"] || "-"}
+
+🔒 HTTPS:
+${h["strict-transport-security"] ? "Secure" : "Unknown"}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Website tidak dapat diakses"
+    );
+  }
+});
+
+//hash
+bot.command("hash", async (ctx) => {
+  const text = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!text)
+    return ctx.reply("Contoh: /hash hello");
+
+  const load = await runLoading(ctx, "hash");
+
+  try {
+
+    const md5 = crypto.createHash("md5").update(text).digest("hex");
+    const sha1 = crypto.createHash("sha1").update(text).digest("hex");
+    const sha256 = crypto.createHash("sha256").update(text).digest("hex");
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🔐 HASH RESULT
+
+📝 Input:
+${text}
+
+MD5:
+${md5}
+
+SHA1:
+${sha1}
+
+SHA256:
+${sha256}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Gagal membuat hash"
+    );
+  }
+});
+
+//base64
+bot.command("base64", async (ctx) => {
+  const args = ctx.message.text.split(" ").slice(1);
+
+  const mode = args[0];
+  const text = args.slice(1).join(" ");
+
+  if (!mode || !text) {
+    return ctx.reply(
+      "Contoh:\n/base64 encode hello\n/base64 decode aGVsbG8="
+    );
+  }
+
+  const load = await runLoading(ctx, "base64");
+
+  try {
+
+    let result;
+
+    if (mode === "encode") {
+      result = Buffer.from(text).toString("base64");
+    } else if (mode === "decode") {
+      result = Buffer.from(text, "base64").toString();
+    } else {
+      return ctx.telegram.editMessageText(
+        ctx.chat.id,
+        load.message_id,
+        null,
+        "❌ Mode harus encode atau decode"
+      );
+    }
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🔄 BASE64
+
+Mode: ${mode}
+
+${result}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Error Base64"
+    );
+  }
+});
+
+//json
+bot.command("json", async (ctx) => {
+  const text = ctx.message.text.split(" ").slice(1).join(" ");
+
+  if (!text)
+    return ctx.reply(
+      'Contoh: /json {"nama":"Zamzz","umur":16}'
+    );
+
+  const load = await runLoading(ctx, "json");
+
+  try {
+
+    const formatted = JSON.stringify(
+      JSON.parse(text),
+      null,
+      2
+    );
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`📦 JSON FORMAT
+
+${formatted}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ JSON tidak valid"
+    );
+  }
+});
+
+//uuid
+bot.command("uuid", async (ctx) => {
+  const load = await runLoading(ctx, "uuid");
+
+  const id = crypto.randomUUID();
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    load.message_id,
+    null,
+    `🆔 UUID GENERATED
+
+${id}`
+  );
+});
+
+//ip
+bot.command("ip", async (ctx) => {
+
+  const ip = ctx.message.text.split(" ")[1];
+
+  if (!ip)
+    return ctx.reply("Contoh: /ip 8.8.8.8");
+
+  const load = await runLoading(ctx, "ip");
+
+  try {
+
+    const res = await axios.get(
+      `http://ip-api.com/json/${ip}`
+    );
+
+    const d = res.data;
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`🌍 IP INFORMATION
+
+📡 IP:
+${d.query}
+
+🌎 Negara:
+${d.country}
+
+🏙 Kota:
+${d.city}
+
+📍 Region:
+${d.regionName}
+
+🏢 ISP:
+${d.isp}
+
+🕒 Timezone:
+${d.timezone}`
+    );
+
+  } catch {
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Gagal mengambil data IP"
+    );
+  }
+});
+
+//dns
+const dns = require("dns");
+
+bot.command("dns", async (ctx) => {
+  const domain = ctx.message.text.split(" ")[1];
+
+  if (!domain)
+    return ctx.reply("Contoh: /dns google.com");
+
+  const load = await runLoading(ctx, "dns");
+
+  dns.lookup(domain, async (err, address) => {
+    if (err) {
+      return ctx.telegram.editMessageText(
+        ctx.chat.id,
+        load.message_id,
+        null,
+        "❌ Domain tidak ditemukan"
+      );
+    }
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      `🌐 DNS LOOKUP
+
+🔗 Domain: ${domain}
+📡 IP: ${address}`
+    );
+  });
+});
+
+//timestamp
+bot.command("timestamp", async (ctx) => {
+
+  const load = await runLoading(ctx, "timestamp");
+
+  const unix = Math.floor(Date.now() / 1000);
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    load.message_id,
+    null,
+`⏱ UNIX TIMESTAMP
+
+${unix}
+
+📅 ${new Date().toLocaleString()}`
+  );
+
+});
+
+//stats
+bot.command("stats", async (ctx) => {
+
+  const load = await runLoading(ctx, "stats");
+
+  const uptime = process.uptime();
+
+  const hours = Math.floor(uptime / 3600);
+  const mins = Math.floor((uptime % 3600) / 60);
+  const secs = Math.floor(uptime % 60);
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    load.message_id,
+    null,
+`📊 BOT STATISTICS
+
+🤖 Status:
+ONLINE
+
+⏳ Uptime:
+${hours}h ${mins}m ${secs}s
+
+🟢 Memory:
+${Math.round(process.memoryUsage().rss / 1024 / 1024)} MB
+
+⚡ Platform:
+${process.platform}`
+  );
+
+});
+
+//age
+bot.command("age", async (ctx) => {
+
+  const year = parseInt(
+    ctx.message.text.split(" ")[1]
+  );
+
+  if (!year)
+    return ctx.reply("Contoh: /age 2008");
+
+  const load = await runLoading(ctx, "age");
+
+  const age = new Date().getFullYear() - year;
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    load.message_id,
+    null,
+`🎂 AGE CALCULATOR
+
+📅 Tahun Lahir:
+${year}
+
+🎉 Umur:
+${age} Tahun`
+  );
+
+});
+
+//headers
+bot.command("headers", async (ctx) => {
+
+  const url = ctx.message.text.split(" ")[1];
+
+  if (!url)
+    return ctx.reply(
+      "Contoh: /headers https://google.com"
+    );
+
+  const load = await runLoading(ctx, "headers");
+
+  try {
+
+    const res = await axios.get(url);
+
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`📡 HTTP HEADERS
+
+🌐 URL:
+${url}
+
+🖥 Server:
+${res.headers.server || "-"}
+
+📦 Content-Type:
+${res.headers["content-type"] || "-"}
+
+🔒 Powered:
+${res.headers["x-powered-by"] || "-"}
+
+📏 Length:
+${res.headers["content-length"] || "-"}`
+    );
+
+  } catch {
+
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Gagal mengambil header"
+    );
+
+  }
+
+});
+
+//password
+bot.command("password", async (ctx) => {
+
+  const load = await runLoading(ctx, "password");
+
+  const password =
+    crypto.randomBytes(12).toString("base64")
+      .replace(/[+/=]/g, "")
+      .slice(0, 16);
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    load.message_id,
+    null,
+`🔑 PASSWORD GENERATOR
+
+🛡 Password:
+${password}
+
+📏 Panjang:
+16 Karakter`
+  );
+
+});
+
+//randomuser
+bot.command("randomuser", async (ctx) => {
+
+  const load = await runLoading(ctx, "randomuser");
+
+  try {
+
+    const res = await fetch(
+      "https://randomuser.me/api/"
+    );
 
     const data = await res.json();
 
-    await ctx.replyWithPhoto(data.avatar_url, {
-      caption:
-`🐙 GitHub Stalk
+    const user = data.results[0];
 
-👤 Username: ${data.login}
-📝 Bio: ${data.bio || "-"}
-👥 Followers: ${data.followers}
-👤 Following: ${data.following}
-📦 Repo: ${data.public_repos}
+    await ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+`👤 RANDOM USER
 
-🔗 ${data.html_url}`
-    });
+🧑 Nama:
+${user.name.first} ${user.name.last}
+
+📧 Email:
+${user.email}
+
+🌍 Negara:
+${user.location.country}
+
+📱 Telepon:
+${user.phone}`
+    );
 
   } catch {
-    ctx.reply("❌ Error");
+
+    ctx.telegram.editMessageText(
+      ctx.chat.id,
+      load.message_id,
+      null,
+      "❌ Gagal mengambil data"
+    );
+
   }
+
 });
 
 //apk
@@ -4396,24 +5166,6 @@ bot.command("qr", async (ctx) => {
   const url = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(text)}`;
 
   await ctx.replyWithPhoto(url);
-});
-
-//ip
-bot.command("ip", async (ctx) => {
-  const ip = ctx.message.text.split(" ")[1];
-
-  if (!ip) return ctx.reply("Contoh: /ip 8.8.8.8");
-
-  const res = await fetch(`http://ip-api.com/json/${ip}`);
-  const data = await res.json();
-
-  ctx.reply(`
-🌍 Negara: ${data.country}
-🏙 Kota: ${data.city}
-📡 ISP: ${data.isp}
-📍 Lat: ${data.lat}
-📍 Lon: ${data.lon}
-`);
 });
 
 //shorturl
@@ -4581,20 +5333,29 @@ ${dare}
 });
 
 //slot
-bot.command("slot", (ctx) => {
-  const items = ["🍒", "🍋", "🍇", "💎", "⭐"];
+bot.command("slot", async (ctx) => {
 
-  const a = items[Math.floor(Math.random() * items.length)];
-  const b = items[Math.floor(Math.random() * items.length)];
-  const c = items[Math.floor(Math.random() * items.length)];
+  const load = await runLoading(ctx, "slot");
+
+  const items = ["🍎", "🍋", "🍇", "💎", "7️⃣"];
+
+  const a = items[Math.floor(Math.random()*items.length)];
+  const b = items[Math.floor(Math.random()*items.length)];
+  const c = items[Math.floor(Math.random()*items.length)];
 
   const win = a === b && b === c;
 
-  ctx.reply(
-`${a} | ${b} | ${c}
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    load.message_id,
+    null,
+`🎰 SLOT MACHINE
 
-${win ? "🎉 JACKPOT!" : "😢 Coba Lagi"}`
+${a} | ${b} | ${c}
+
+${win ? "🎉 JACKPOT!" : "😢 Coba lagi"}`
   );
+
 });
 
 //spin
@@ -4668,27 +5429,73 @@ const soalQuiz = [
 ];
 
 const gameQuiz = {};
+bot.command("quiz", async (ctx) => {
 
-bot.command("quiz", (ctx) => {
-  const soal = soalQuiz[Math.floor(Math.random() * soalQuiz.length)];
+  const msg = await ctx.reply(
+`🧠 QUIZ
+
+📚 Menyiapkan soal...
+██▒▒▒▒▒▒▒▒ 20%`
+  );
+
+  await new Promise(r => setTimeout(r, 800));
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`🧠 QUIZ
+
+🔍 Memilih kategori...
+█████▒▒▒▒▒ 50%`
+  );
+
+  await new Promise(r => setTimeout(r, 800));
+
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
+`🧠 QUIZ
+
+🎯 Menentukan pertanyaan...
+████████▒▒ 80%`
+  );
+
+  await new Promise(r => setTimeout(r, 800));
+
+  const soal =
+    soalQuiz[Math.floor(Math.random() * soalQuiz.length)];
 
   gameQuiz[ctx.from.id] = soal.a.toLowerCase();
 
-  ctx.reply(
+  await ctx.telegram.editMessageText(
+    ctx.chat.id,
+    msg.message_id,
+    null,
 `🧠 QUIZ
+
+██████████ 100%
 
 ❓ ${soal.q}
 
 💬 Jawab dengan:
-/ans jawaban`
+\/ans jawaban`
   );
+
 });
 
-bot.command("ans", (ctx) => {
+bot.command("ans", async (ctx) => {
+
   const user = ctx.from.id;
 
   if (!gameQuiz[user]) {
-    return ctx.reply("❌ Tidak ada quiz aktif.\nGunakan /quiz");
+    return ctx.reply(
+`❌ Tidak ada quiz aktif
+
+Gunakan:
+/quiz`
+    );
   }
 
   const jawab = ctx.message.text
@@ -4700,21 +5507,29 @@ bot.command("ans", (ctx) => {
   const benar = gameQuiz[user];
 
   if (jawab === benar) {
+
     delete gameQuiz[user];
 
-    ctx.reply(
-`🎉 BENAR!
+    return ctx.reply(
+`🎉 JAWABAN BENAR
 
-✅ Jawaban:
-${benar}`
-    );
-  } else {
-    ctx.reply(
-`❌ SALAH!
+✅ ${benar}
 
-💡 Coba lagi`
+🏆 Selamat!
+Kamu berhasil menjawab quiz.`
     );
+
   }
+
+  ctx.reply(
+`❌ JAWABAN SALAH
+
+💡 Coba lagi!
+
+Gunakan:
+/ans jawaban`
+  );
+
 });
 
 //mistery box
